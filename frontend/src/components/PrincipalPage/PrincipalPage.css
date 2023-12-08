@@ -1,0 +1,654 @@
+
+.loader{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	   -moz-transform: translate(-50%,-50%);
+	    -ms-transform: translate(-50%,-50%);
+	     -o-transform: translate(-50%,-50%);
+	        transform: translate(-50%,-50%);
+}
+
+.loader h1{
+	margin-top: 10%;
+  margin-left: -85%;
+	padding: 0;
+	text-transform: uppercase;
+	font-size: 6em;
+	color: rgba(255,255,255,.1);
+	background-image: url(https://wallpapers.com/images/hd/blue-and-purple-3840-x-2160-t20ps2kmo6okyx3g.jpg);
+	background-repeat: repeat-x;
+	-webkit-background-clip: text;
+	animation: animate 15s linear infinite;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+
+}
+
+@keyframes animate{
+	0%{
+		background-position: left 0px top 80px;
+	}
+	40%{
+		background-position: left 800px top -50px;
+	}
+	80%{
+		background-position: left 1800px top -50px;
+	}
+	100%{
+		background-position: left 2400px top 80px;
+	}
+}
+
+
+
+
+.carton {
+  width: 630px;
+  position:absolute;
+  margin-right: 15%;
+  margin-top: -40%;
+  
+}
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+.fa-2x {
+font-size: 2em;
+}
+
+
+
+.header3 {
+    height: 100vh;
+    background-color: #00000071;
+    backdrop-filter: blur(5px);
+    background-position: top;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.brand-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.brand { font-size: 20px; }
+
+.text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+
+    backface-visibility: hidden;
+    margin-bottom: 30px;
+}
+
+.heading-primary-main {
+    display: block;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.heading-primary-sub3 {
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 7.4px;
+    margin-left: -30%
+}
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+    position: relative;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+  font-size: 14px;
+}
+
+
+.PrincipalIcons {
+  margin-top: 30%;
+}
+
+
+/*-----------------------------------------CARDS STYLES-----------------------------------------*/
+
+.InventarioIcono {
+    margin-left: 15%;
+    margin-top: 4%;
+    background-image: url(../../assets/img/Inventario.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    position: relative;
+    max-width: 250px;
+    height: 350px;
+    border-radius: 5px;
+    padding-top: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 7.5px;
+    transition: 0.5s ease;
+   
+    color: #ffffff00;
+  }
+  
+  .InventarioIcono::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(../../assets/img/Inventario.png); 
+    background-size:contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: 0.4s ease;
+   
+  }
+  
+  .InventarioIcono:hover::after {
+    opacity: 100;
+    
+  }
+  
+  .cardHeader {
+    text-transform: uppercase;
+    position: relative;
+    width: max-content;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    color: #8c2c6c;
+  }
+  .cardHeader::after {
+    content: "";
+    width: calc(100% + 1rem);
+    height: 2.5px;
+    transform: translateX(calc(-100% - 1rem));
+    background: rgb(255, 0, 0);
+    bottom: -2px;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+  
+  }
+  
+  .details {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transform: translateY(95%);
+    transition: all 0.5s ease;
+    margin-bottom: 50%;
+  }
+
+  .cardText {
+    padding-bottom: 10%;
+  }
+  
+  .button {
+    background-color: #8c2c6c;
+    color: rgb(255, 255, 255);
+    padding: 2.5px 7px;
+    width: max-content;
+    border-radius: 2.5px;
+  }
+  .InventarioIcono:hover .details {
+    transform: translateY(0%);
+    transition-delay: 0.5s;
+    color: #000000;
+    background-color: rgba(193, 192, 192, 0.151);
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+  }
+  .InventarioIcono:hover .cardHeader::after {
+    transform: translateX(-1rem);
+    transition: 0.5s ease;
+    opacity: 1;
+  }
+  .InventarioIcono:hover {
+    transform: scale(1.1);
+    border-radius: 15px;
+  }
+
+  
+  /*-----------------------------------------Usuarios-----------------------------------------*/
+
+  .PedidosIcono {
+    margin-left: 45%;
+    margin-top: -27.5%;
+    background-size:contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    max-width: 250px;
+    height: 350px;
+    border-radius: 5px;
+    padding-top: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 7.5px;
+    transition: 0.5s ease;
+    color: #ffffff00;
+  }
+  
+  .PedidosIcono::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size:contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: 0.4s ease;
+   
+  }
+  .
+  .PedidosIcono:hover::after {
+    opacity: 100;
+    
+  }
+  
+  .cardHeader {
+    text-transform: uppercase;
+    position: relative;
+    width: max-content;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    color: #8c2c6c;
+  }
+  .cardHeader::after {
+    content: "";
+    width: calc(100% + 1rem);
+    height: 2.5px;
+    transform: translateX(calc(-100% - 1rem));
+    background: rgb(255, 0, 0);
+    bottom: -2px;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+   
+  }
+  
+  .details {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transform: translateY(95%);
+    transition: all 0.5s ease;
+    margin-bottom: 43%;
+  }
+
+  .cardText {
+    padding-bottom: 10%;
+  }
+  
+  .button {
+    background-color: #8c2c6c;
+    color: rgb(255, 255, 255);
+    padding: 2.5px 7px;
+    width: max-content;
+    border-radius: 2.5px;
+  }
+  .PedidosIcono:hover .details {
+    transform: translateY(0%);
+    transition-delay: 0.5s;
+    color: #000000;
+    background-color: rgba(193, 192, 192, 0.151);
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+  }
+  .PedidosIcono:hover .cardHeader::after {
+    transform: translateX(-1rem);
+    transition: 0.5s ease;
+    opacity: 1;
+  }
+  .PedidosIcono:hover {
+    transform: scale(1.1);
+    border-radius: 15px;
+  }
+
+  /*-----------------------------------------Registros-----------------------------------------*/
+
+  .RegistrosIcono {
+    margin-left: 75%;
+    margin-top: -27.5%;
+    background-image: url(../../assets/img/Registros.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    max-width: 250px;
+    height: 350px;
+    border-radius: 5px;
+    padding-top: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 7.5px;
+    transition: 0.5s ease;
+   
+    color: #ffffff00;
+  }
+  
+  .RegistrosIcono::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(../../assets/img/Registros.png); 
+    background-size:contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: 0.4s ease;
+   
+  }
+  
+  .RegistrosIcono:hover::after {
+    opacity: 100;
+    
+  }
+  
+  .cardHeader {
+    text-transform: uppercase;
+    position: relative;
+    width: max-content;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    color: #8c2c6c;
+  }
+  .cardHeader::after {
+    content: "";
+    width: calc(100% + 1rem);
+    height: 2.5px;
+    transform: translateX(calc(-100% - 1rem));
+    background: rgb(255, 0, 0);
+    bottom: -2px;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+   
+  }
+  
+  .details {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transform: translateY(95%);
+    transition: all 0.5s ease;
+    margin-bottom: 43%;
+  }
+
+  .cardText {
+    padding-bottom: 10%;
+  }
+  
+  .button {
+    background-color: #8c2c6c;
+    color: rgb(255, 255, 255);
+    padding: 2.5px 7px;
+    width: max-content;
+    border-radius: 2.5px;
+  }
+  .RegistrosIcono:hover .details {
+    transform: translateY(0%);
+    transition-delay: 0.5s;
+    color: #000000;
+    background-color: rgba(193, 192, 192, 0.151);
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+  }
+  .RegistrosIcono:hover .cardHeader::after {
+    transform: translateX(-1rem);
+    transition: 0.5s ease;
+    opacity: 1;
+  }
+  .RegistrosIcono:hover {
+    transform: scale(1.1);
+    border-radius: 15px;
+  }
+
+/*-----------------------------------------Sedes-----------------------------------------*/
+
+.SedesIcono {
+    margin-left: 28%;
+    margin-top: 0%;
+    background-image: url(../../assets/img/Sedes.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    position: relative;
+    max-width: 250px;
+    height: 350px;
+    border-radius: 5px;
+    padding-top: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 7.5px;
+    transition: 0.5s ease;
+   
+    color: #ffffff00;
+  }
+  
+  .SedesIcono::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(../../assets/img/Sedes.png); 
+    background-size:contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: 0.4s ease;
+   
+  }
+  
+  .SedesIcono:hover::after {
+    opacity: 100;
+    
+  }
+  
+  .cardHeader {
+    text-transform: uppercase;
+    position: relative;
+    width: max-content;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    color: #8c2c6c;
+  }
+  .cardHeader::after {
+    content: "";
+    width: calc(100% + 1rem);
+    height: 2.5px;
+    transform: translateX(calc(-100% - 1rem));
+    background: rgb(255, 0, 0);
+    bottom: -2px;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+   
+  }
+  
+  .details {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transform: translateY(95%);
+    transition: all 0.5s ease;
+    margin-bottom: 43%;
+  }
+
+  .cardText {
+    padding-bottom: 10%;
+  }
+  
+  .button {
+    background-color: #8c2c6c;
+    color: rgb(255, 255, 255);
+    padding: 2.5px 7px;
+    width: max-content;
+    border-radius: 2.5px;
+  }
+  .SedesIcono:hover .details {
+    transform: translateY(0%);
+    transition-delay: 0.5s;
+    color: #000000;
+    background-color: rgba(193, 192, 192, 0.151);
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+  }
+  .SedesIcono:hover .cardHeader::after {
+    transform: translateX(-1rem);
+    transition: 0.5s ease;
+    opacity: 1;
+  }
+  .SedesIcono:hover {
+    transform: scale(1.1);
+    border-radius: 15px;
+  }
+
+
+  /*-----------------------------------------Asistencia-----------------------------------------*/
+
+
+.ListaIcono {
+    margin-left: 61%;
+    margin-top: -27%;
+    background-image: url(../../assets/img/lista.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    position: relative;
+    max-width: 230px;
+    height: 350px;
+    border-radius: 5px;
+    padding-top: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 7.5px;
+    transition: 0.5s ease;
+   
+    color: #ffffff00;
+  }
+  
+  .ListaIcono::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(../../assets/img/lista.png); 
+    background-size:contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: 0.4s ease;
+   
+  }
+  
+  .ListaIcono:hover::after {
+    opacity: 100;
+    
+  }
+  
+  .cardHeader {
+    text-transform: uppercase;
+    position: relative;
+    width: max-content;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    color: #8c2c6c;
+    margin-top: 0%;
+  }
+  .cardHeader::after {
+    content: "";
+    width: calc(100% + 1rem);
+    height: 2.5px;
+    transform: translateX(calc(-100% - 1rem));
+    background: rgb(255, 0, 0);
+    bottom: -2px;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+   
+  }
+  
+  .details {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transform: translateY(95%);
+    transition: all 0.5s ease;
+    margin-bottom: 43%;
+  }
+
+  .cardText {
+    padding-bottom: 10%;
+  }
+  
+  .button {
+    background-color: #8c2c6c;
+    color: rgb(255, 255, 255);
+    padding: 2.5px 7px;
+    width: max-content;
+    border-radius: 2.5px;
+  }
+  .ListaIcono:hover .details {
+    transform: translateY(0%);
+    transition-delay: 0.5s;
+    color: #000000;
+    background-color: rgba(193, 192, 192, 0.151);
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+  }
+  .ListaIcono:hover .cardHeader::after {
+    transform: translateX(-1rem);
+    transition: 0.5s ease;
+    opacity: 1;
+  }
+  .ListaIcono:hover {
+    transform: scale(1.1);
+    border-radius: 15px;
+  }
+
+  .fondo {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    top: 40%;
+    left: 40%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -1;
+    }

@@ -1,0 +1,12 @@
+
+.uvaName {
+    width: 80px;
+}
+
+.footer {
+    background: rgba(0, 0, 0, 0.247);
+    bottom: 0;
+    width: 100%;
+    position:relative;
+    
+}

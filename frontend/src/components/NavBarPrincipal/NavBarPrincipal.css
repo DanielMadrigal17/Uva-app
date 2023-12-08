@@ -1,0 +1,19 @@
+
+.container-fluid {
+   padding-left: 7%;
+   
+}
+
+.cencinai{
+    width: 70px;
+    padding-top: 0.3%;
+    padding-bottom: 0.3%;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.317);
+    backdrop-filter: blur (5px);
+}
+

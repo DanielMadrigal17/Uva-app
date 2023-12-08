@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.0",
+    "jwt-decode": "^4.0.0",
+    "pdfmake": "^0.2.8",
+    "react-router-dom": "^6.20.0",
+    "react-tabs": "^6.0.2"
+  }
+}

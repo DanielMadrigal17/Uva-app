@@ -1,0 +1,354 @@
+
+.map {
+  width: 530px;
+    position:absolute;
+    margin-right: 50%;
+    margin-top: -70%;
+  }
+  
+  .heading-primary-sub4 {
+      display: flex;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 7.4px;
+      margin-left: -50%
+  }
+  
+  .loader2 h1{
+    margin-top: 10%;
+      margin-left: -120%;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 6em;
+    color: rgba(255,255,255,.1);
+    background-image: url(https://wallpapers.com/images/hd/blue-and-purple-3840-x-2160-t20ps2kmo6okyx3g.jpg);
+    background-repeat: repeat-x;
+    -webkit-background-clip: text;
+    animation: animate 15s linear infinite;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+  
+  }
+  
+  
+  
+  
+  
+  
+  .cardMap {
+    position: absolute;
+    width: 450px;
+    height: 340px;
+    color: #2e2d31;
+    background: #131313;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-left: 50%;
+  }
+  
+  .temporary_text {
+    font-weight: bold;
+    font-size: 24px;
+    color: #f8f8f8;
+  }
+  
+  .card_title {
+    font-weight: bold;
+  
+  }
+  
+  .card_content {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+      /* edit the width to fit card */
+    width: 100%;
+    padding: 20px;
+    background: #f2f2f2;
+    border-top-left-radius: 20px;
+      /* edit here to change the height of the content box */
+    transform: translateY(100px);
+    transition: transform .25s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 5);
+  }
+  
+  .card_content::before {
+    content: '';
+    position: absolute;
+    top: -47px;
+    right: -45px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(-175deg);
+    border-radius: 50%;
+    box-shadow: inset 48px 48px #f2f2f2;
+  }
+  
+  .card_title {
+    color: #131313;
+    line-height: 15px;
+  }
+  
+  .card_subtitle {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  
+  .card_description {
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity .5s;
+  }
+  
+  .cardMap:hover .card_content {
+    transform: translateY(0);
+  }
+  
+  .cardMap:hover .card_description {
+    opacity: 1;
+    transition-delay: .25s;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .cardMap2 {
+    position: relative;
+    width: 450px;
+    height: 340px;
+    color: #2e2d31;
+    background: #131313;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-left: 10%;
+  }
+  
+  .temporary_text2 {
+    font-weight: bold;
+    font-size: 24px;
+    color: #f8f8f8;
+  }
+  
+  .card_title2 {
+    font-weight: bold;
+    
+  }
+  
+  .card_content2 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+      /* edit the width to fit card */
+    width: 100%;
+    padding: 20px;
+    background: #f2f2f2;
+    border-top-left-radius: 20px;
+      /* edit here to change the height of the content box */
+    transform: translateY(90px);
+    transition: transform .25s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 5);
+  }
+  
+  .card_content2::before {
+    content: '';
+    position: absolute;
+    top: -47px;
+    right: -45px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(-175deg);
+    border-radius: 50%;
+    box-shadow: inset 48px 48px #f2f2f2;
+  }
+  
+  .card_title2 {
+    color: #131313;
+    line-height: 15px;
+  }
+  
+  .card_subtitle2 {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  
+  .card_description2 {
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity .5s;
+  }
+  
+  .cardMap2:hover .card_content2 {
+    transform: translateY(0);
+  }
+  
+  .cardMap2:hover .card_description2 {
+    opacity: 1;
+    transition-delay: .25s;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .cardMap3 {
+    position: relative;
+    width: 450px;
+    height: 340px;
+    color: #2e2d31;
+    background: #131313;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-left: 10%;
+    margin-top: 2%;
+  }
+  
+  .temporary_text3 {
+    font-weight: bold;
+    font-size: 24px;
+    color: #f8f8f8;
+  }
+  
+  .card_title3 {
+    font-weight: bold;
+    
+  }
+  
+  .card_content3 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+      /* edit the width to fit card */
+    width: 100%;
+    padding: 20px;
+    background: #f2f2f2;
+    border-top-left-radius: 20px;
+      /* edit here to change the height of the content box */
+    transform: translateY(140px);
+    transition: transform .25s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 5);
+  }
+  
+  .card_content3::before {
+    content: '';
+    position: absolute;
+    top: -47px;
+    right: -45px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(-175deg);
+    border-radius: 50%;
+    box-shadow: inset 48px 48px #f2f2f2;
+  }
+  
+  .card_title3 {
+    color: #131313;
+    line-height: 15px;
+  }
+  
+  .card_subtitle3 {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  
+  .card_description3 {
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity .5s;
+  }
+  
+  .cardMap3:hover .card_content3 {
+    transform: translateY(0);
+  }
+  
+  .cardMap3:hover .card_description3 {
+    opacity: 1;
+    transition-delay: .25s;
+  }
+  
+  
+  
+  
+  
+  .cardMap4 {
+    position: absolute;
+    width: 450px;
+    height: 340px;
+    color: #2e2d31;
+    background: #131313;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-left: 50%;
+    margin-top: -27%;
+  
+  }
+  
+  .temporary_text4 {
+    font-weight: bold;
+    font-size: 24px;
+    color: #f8f8f8;
+  }
+  
+  .card_title4 {
+    font-weight: bold;
+    
+  }
+  
+  .card_content4 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+      /* edit the width to fit card */
+    width: 100%;
+    padding: 20px;
+    background: #f2f2f2;
+    border-top-left-radius: 20px;
+      /* edit here to change the height of the content box */
+    transform: translateY(168px);
+    transition: transform .25s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 5);
+  }
+  
+  .card_content4::before {
+    content: '';
+    position: absolute;
+    top: -47px;
+    right: -45px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(-175deg);
+    border-radius: 50%;
+    box-shadow: inset 48px 48px #f2f2f2;
+  }
+  
+  .card_title4 {
+    color: #131313;
+    line-height: 15px;
+  }
+  
+  .card_subtitle4 {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  
+  .card_description4 {
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity .5s;
+  }
+  
+  .cardMap4:hover .card_content4 {
+    transform: translateY(0);
+  }
+  
+  .cardMap4:hover .card_description4 {
+    opacity: 1;
+    transition-delay: .25s;
+  }

@@ -1,0 +1,26 @@
+
+.manos {
+  width: 630px;
+  position:absolute;
+  margin-right: 15%;
+  margin-top: -55%;
+  height: 400px;
+  transform: rotate(-6deg);
+}
+
+.Vamos {
+  border: 2px solid beige;
+  color: white;
+  background-color: #8c2c6c; /* Cambia el color de fondo */
+  padding: 10px 20px; /* Ajusta el relleno interno */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  border-radius: 5px; /* Redondea las esquinas */
+  text-align: center; /* Centra el texto horizontalmente */
+  font-weight: bold; /* Añade negrita al texto */
+  text-transform: uppercase; /* Convierte el texto a mayúsculas */
+  transition: background-color 0.3s ease; /* Agrega una transición suave al color de fondo */
+}
+
+.Vamos:hover {
+  background-color: #8c2c6c73; /* Cambia el color de fondo al pasar el cursor */
+}
