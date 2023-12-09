@@ -3,8 +3,7 @@ import axios from 'axios';
 import './getInventory.css';
 import { useNavigate } from 'react-router-dom'
 
-
-const GetInventary  = () => {
+const GetInventary = () => {
     const navigation = useNavigate();
     const [inventory, setInventory] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -77,7 +76,7 @@ const GetInventary  = () => {
         try {
             await axios.delete(url);
             console.log('Inventory item deleted successfully');
-            fetchInventory(); 
+            fetchInventory();
         } catch (error) {
             console.error('Error deleting inventory item:', error);
         }
@@ -91,7 +90,8 @@ const GetInventary  = () => {
 
     const searchInventory = () => {
         return inventory.filter(item =>
-            item.item.toLowerCase().includes(searchTerm.toLowerCase())
+            (item.item.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.category.toLowerCase().includes(searchTerm.toLowerCase()))
         );
     };
 
@@ -99,12 +99,12 @@ const GetInventary  = () => {
         setSearchTerm(e.target.value);
     };
 
-    return  (
+    return (
         <div className="inventory-wrapper">
             <h1>Inventario</h1>
             <input
                 type="text"
-                placeholder="Busca el producto..."
+                placeholder="Busca el producto o categoría..."
                 value={searchTerm}
                 onChange={handleSearch}
                 className="search-input"
@@ -193,10 +193,9 @@ const GetInventary  = () => {
                     </button>
                 </div>
             )}
-        <div className="Vamos" onClick={()=>goToInventory('/inventorie')}>Añadir Productos</div>
+            <div className="Vamos" onClick={() => goToInventory('/inventorie')}>Añadir Productos</div>
         </div>
-        
     );
 };
 
-export default GetInventary ;
+export default GetInventary;

@@ -89,7 +89,6 @@ const App =()=>{
   ]);
   return (
     <div className="App">
-      <h1>Sisoi</h1>
       <RouterProvider router={router} />
     </div>
   );
