@@ -9,7 +9,7 @@ function SideBar() {
     const navigation = useNavigate()
 
     function logoutHome () {
-        navigation('/user');
+        navigation('/');
     }
 
 return (

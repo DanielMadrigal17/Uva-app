@@ -147,7 +147,7 @@ const Estudiantes = () => {
         <div className="estudiantes-wrapper">
             <h1>Lista de Estudiantes</h1>
             {estudiantes.length === 0 ? (
-                <p>No hay estudiantes en este momento.</p>
+                <h3>No hay estudiantes registrados en este momento.</h3>
                 ) : (
 
             <table className="estudiantes-table">

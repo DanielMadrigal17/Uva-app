@@ -47,7 +47,12 @@ function Inventory () {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        if (name === 'quantity' && parseInt(value) < 1) {
+            // Si el número es menor que 1, establece la cantidad en 1
+            setFormData({ ...formData, [name]: 1 });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -152,6 +157,7 @@ function Inventory () {
                     name="date"
                     value={formData.date}
                     onChange={handleChange}
+                    min="1970-01-01"
                 />
 
                 <div id="tenth" class="buttonBox">

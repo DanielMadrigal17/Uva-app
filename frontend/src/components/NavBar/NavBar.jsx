@@ -4,7 +4,7 @@ import "./NavBar.css"
 function NavBar() {
   return (
     <div><nav class="navbar bg-body-tertiary">
-    <div className="containerNav">
+    <div>
       <a className="navbar-brand" href="http://localhost:3000/">
       </a>
     </div>

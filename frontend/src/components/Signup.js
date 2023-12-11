@@ -44,40 +44,39 @@ const Signup = ({ setCurrUser, setShow }) => {
     };
 
 return (
-    <div>
+    <div className="signup-div">
             <header><NavBar></NavBar> </header>
-            <img className='uvaLogo2' src={uva} alt='uva logo'></img>
-            <p className='eslogan2'> UVA App, organiza y administra <br/>
+            <img className='signup-uvaLogo2' src={uva} alt='uva logo'></img>
+            <p className='signup-eslogan2'> UVA App, organiza y administra <br/>
                     tu empresa de la mejor manera. </p>
-            <form className="form" ref={formRef} onSubmit={handleSubmit}>
-                <p className="title">Registrate </p>
-                <p className="message">Registrate para tener acceso a UVA. </p>
-                <div class="flex">
+            <form className="signup-form" ref={formRef} onSubmit={handleSubmit}>
+                <p className="signup-title">Registrate </p>
+                <p className="signup-message">Registrate para tener acceso a UVA. </p>
+                <div class="signup-flex">
                         <label>
-                            <input type="text" name='firstName'  className="input"/>
+                            <input type="text" name='firstName'  className="signup-input"/>
                             <span>Nombre</span>
                         </label>
                         <br />
                         <label>
-                            <input  className="input" type="text" name='lastName'  />                  
+                            <input  className="signup-input" type="text" name='lastName'  />                  
                             <span>Apellido</span>
                         </label>
                 </div>
                         <label>
-                            <input className="input" type="email" name='email' autoComplete="off" />
+                            <input className="signup-input" type="email" name='email' autoComplete="off" />
                             <span>Correo</span>
                         </label>
-
                         <label>
-                            <input className="input" type="password" name='password'  />
+                            <input className="signup-input" type="password" name='password'  />
                             <span>Contraseña</span>
                         </label>
                         <label>
-                            <input className="input" type="password" placeholder="" required=""/>
+                            <input className="signup-input" type="password" placeholder="" required=""/>
                             <span>Confirmar contraseña</span>
                         </label>
                         <label>
-                            <input className="submit" type='submit' value="Registrar" />
+                            <input className="signup-submit" type='submit' value="Registrar" />
                         </label>
                 <div>Ya tienes una cuenta? <a href="/" onClick={handleClick} >inicia sesión</a>.</div>
             </form>

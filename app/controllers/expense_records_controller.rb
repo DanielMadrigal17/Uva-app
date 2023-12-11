@@ -26,7 +26,6 @@ class ExpenseRecordsController < ApplicationController
     
     @expense_record = ExpenseRecord.new(expense_record_params)
 
-    byebug
 
     if @expense_record.save
       render json: @expense_record, status: :created
