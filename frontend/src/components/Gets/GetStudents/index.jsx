@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './styles.css'
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -7,6 +8,11 @@ import pdfMake from 'pdfmake/build/pdfmake';
 const Estudiantes = () => {
     const [estudiantes, setEstudiantes] = useState([]);
     const [estudianteSeleccionado, setEstudianteSeleccionado] = useState(null);
+    const navigation = useNavigate();
+
+    function goBack() {
+        navigation('/list_assistance');
+    }
 
     const exportPDF = () => {
         const data = estudiantes.map((estudiante) => [
@@ -43,7 +49,12 @@ const Estudiantes = () => {
                                 { text: 'Nombre del Transportista', style: 'tableHeader' },
                                 { text: 'Nombre del Oficial', style: 'tableHeader' },
                             ],
-                            ...data,
+                            ...data.map((row) =>
+                                row.map((cell) => ({
+                                    text: cell,
+                                    style: 'tableBody', // Aplicar estilo de tabla al cuerpo
+                                }))
+                            ),
                         ],
                     },
                 },
@@ -61,11 +72,18 @@ const Estudiantes = () => {
                     alignment: 'center',
                     margin: [0, 5, 0, 5],
                 },
+                tableBody: {
+                    fontSize: 10,
+                    alignment: 'center',
+                    margin: [0, 5, 0, 5],
+                    height: 20, // Altura de las filas en el cuerpo de la tabla
+                },
             },
         };
     
         pdfMake.createPdf(docDefinition).download('estudiantes.pdf');
     };
+    
 
     useEffect(() => {
         obtenerEstudiantes();
@@ -128,6 +146,10 @@ const Estudiantes = () => {
     return (
         <div className="estudiantes-wrapper">
             <h1>Lista de Estudiantes</h1>
+            {estudiantes.length === 0 ? (
+                <p>No hay estudiantes en este momento.</p>
+                ) : (
+
             <table className="estudiantes-table">
                 <thead>
                     <tr>
@@ -165,6 +187,7 @@ const Estudiantes = () => {
                     ))}
                 </tbody>
             </table>
+            )}
             {estudianteSeleccionado && (
                 <div className="formulario-editar">
                     <h2>Editar Estudiante</h2>
@@ -258,7 +281,13 @@ const Estudiantes = () => {
                 </div>
                 
             )}
-            <button onClick={exportPDF}>Exportar a PDF</button>
+
+                {estudiantes.length > 0 && (
+                    <button onClick={exportPDF}>Exportar a PDF</button>
+                )}  
+
+                    <div className="Button-Get-Inventory" onClick={() => goBack('/list_assistance')}>Volver </div>
+
         </div>
     );
 };

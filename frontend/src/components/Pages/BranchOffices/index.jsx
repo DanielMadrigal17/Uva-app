@@ -76,7 +76,7 @@ Dirección: Área Rectora de Jicaral, contiguo a la sede Cruz Roja, Puntarenas. 
     
 </div>
 </article>
- 
+
 </div>
 
 

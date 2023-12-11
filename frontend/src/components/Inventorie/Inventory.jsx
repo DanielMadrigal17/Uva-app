@@ -57,6 +57,7 @@ function Inventory () {
             inventory: formData
         });
         console.log('Inventory created:', response.data);
+        window.location.reload();
         } catch (error) {
         console.error('Error creating inventory:', error);
         }
@@ -64,87 +65,110 @@ function Inventory () {
 
 
     return (
-        <div>
+    <div>
             <img className='fondo' src={fondo} alt='fondo'></img>
             <NavBarPrincipal></NavBarPrincipal>
             <header className="header3">
-            <div className="text-box">
-                <div className="loader3">
-                <h1 className="heading-primary">Inventario</h1>
-                <span className="heading-primary-sub2">       
-</span>
-                <img className='carton2' src={carton} alt="carton" />
+                <div className='VerInventario' onClick={() => goToget('/get_inventorie')}>
+                    <button>
+                        Ver Inventario
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
-            </div>
+                <div className="text-box">
+                    <div className="loader3">
+                        <h1 className="heading-primary">Inventario</h1>
+                            <span className="heading-primary-sub2">       
+                            </span>
+                        <img className='carton2' src={carton} alt="carton" />
+                    </div>
+                </div>
             </header>
+
         <div>
+            <form onSubmit={handleSubmit} className="Form-Inventory">
+                <h1>Agregar producto al Inventario</h1>
+                <label className="form-label" htmlFor="item">Item:</label>
+                <input
+                    className="Input-Inventory"
+                    type="text"
+                    autoComplete='off'
+                    id="item"
+                    name="item"
+                    value={formData.item}
+                    onChange={handleChange}
+                />
 
-        <div className="Vamos" onClick={()=>goToget('/get_inventorie')}>Ver Inventario</div>
+                <label htmlFor="unit_of_measure">Unit of Measure:</label>
+                <select
+                    className='Select-inventory'
+                    id="unit_of_measure"
+                    name="unit_of_measure"
+                    value={formData.unit_of_measure}
+                    onChange={handleChange}
+                >
+                    <option value="">Select a Unit</option>
+                    {predefinedUnit.map((unit_of_measure) => (
+                    <option key={unit_of_measure} value={unit_of_measure}>
+                        {unit_of_measure}
+                    </option>
+                    ))}
+                </select>
 
-    <form onSubmit={handleSubmit} className="inventory-form">
-        <label className="form-label" htmlFor="item">Item:</label>
-        <input
-            type="text"
-            autoComplete='off'
-            id="item"
-            name="item"
-            value={formData.item}
-            onChange={handleChange}
-        />
+                <label htmlFor="category">Category:</label>
+                <select
+                    className='Select-inventory'
+                    id="category"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                >
+                    <option value="">Select a category</option>
+                    {predefinedCategories.map((category) => (
+                    <option key={category} value={category}>
+                        {category}
+                    </option>
+                    ))}
+                </select>
 
-        <label htmlFor="unit_of_measure">Unit of Measure:</label>
-        <select
-            id="unit_of_measure"
-            name="unit_of_measure"
-            value={formData.unit_of_measure}
-            onChange={handleChange}
-        >
-            <option value="">Select a Unit</option>
-            {predefinedUnit.map((unit_of_measure) => (
-            <option key={unit_of_measure} value={unit_of_measure}>
-                {unit_of_measure}
-            </option>
-            ))}
-        </select>
+                <label htmlFor="quantity">Quantity:</label>
+                <input
+                    className="Input-Inventory"
+                    type="number"
+                    id="quantity"
+                    name="quantity"
+                    value={formData.quantity}
+                    onChange={handleChange}
+                />
 
-        <label htmlFor="category">Category:</label>
-        <select
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-        >
-            <option value="">Select a category</option>
-            {predefinedCategories.map((category) => (
-            <option key={category} value={category}>
-                {category}
-            </option>
-            ))}
-        </select>
+                <label htmlFor="date">Date:</label>
+                <input
+                    className="Input-Inventory"
+                    type="date"
+                    id="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                />
 
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-            type="number"
-            id="quantity"
-            name="quantity"
-            value={formData.quantity}
-            onChange={handleChange}
-        />
-
-        <label htmlFor="date">Date:</label>
-        <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-        />
-
-        <button className="form-button" type="submit">Submit</button>
-        </form>
+                <div id="tenth" class="buttonBox">
+                    <button>
+                        <span>A</span>
+                        <span>G</span>
+                        <span>R</span>
+                        <span>E</span>
+                        <span>G</span>
+                        <span>A</span>
+                        <span>R</span>
+                    </button>
+                </div>            
+            </form>
+        </div>
+            <SideBar></SideBar>
     </div>
-    <SideBar></SideBar>
-</div>
 )
 }
 

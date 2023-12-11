@@ -1,22 +1,88 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import pdfMake from 'pdfmake/build/pdfmake'; // Importa pdfmake
+import pdfFonts from 'pdfmake/build/vfs_fonts'; // Importa las fuentes
 import axios from 'axios';
-import './getInventory.css';
-import { useNavigate } from 'react-router-dom'
+import './getInventory.css'; 
 
 const GetInventary = () => {
+    // Inicio de estados
     const navigation = useNavigate();
     const [inventory, setInventory] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
 
+    const exportPDF = () => {
+        const data = inventory.map((item) => [
+            item.item,
+            item.unit_of_measure,
+            item.category,
+            item.quantity,
+            item.date,
+        ]);
+    
+        const docDefinition = {
+            content: [
+                {
+                    text: 'Lista de Inventario',
+                    style: 'header',
+                    alignment: 'center',
+                    margin: [0, 0, 0, 10],
+                },
+                {
+                    table: {
+                        headerRows: 1,
+                        widths: [95, 95, 95, 95, 95],
+                        body: [
+                            [
+                                { text: 'Artículo', style: 'tableHeader' },
+                                { text: 'Unidad', style: 'tableHeader' },
+                                { text: 'Categoría', style: 'tableHeader' },
+                                { text: 'Cantidad', style: 'tableHeader' },
+                                { text: 'Fecha', style: 'tableHeader' },
+                            ],
+                            ...data.map((row) => row.map((cell) => ({ text: cell, style: 'tableBody' }))),
+                        ],
+                    },
+                },
+            ],
+            styles: {
+                header: {
+                    fontSize: 24,
+                    bold: true,
+                },
+                tableHeader: {
+                    bold: true,
+                    fontSize: 12,
+                    color: 'black',
+                    fillColor: '#f2f2f2',
+                    alignment: 'center',
+                    margin: [0, 5, 0, 5],
+                },
+                tableBody: {
+                    fontSize: 10,
+                    alignment: 'center',
+                    margin: [0, 5, 0, 5],
+                    height: 30, // Altura de las filas en el cuerpo de la tabla
+                },
+            },
+        };
+    
+        pdfMake.createPdf(docDefinition).download('inventario.pdf');
+    };
+    
+
+    // Navegar a la página del inventario
     function goToInventory() {
         navigation('/Inventorie');
     }
 
+    // Aca se obtienen los datos cuandos se carga el componente 
     useEffect(() => {
         fetchInventory();
     }, []);
 
+    // Categorías predefinidas
     const predefinedCategories = [
         'Lácteos',
         'No perecedero',
@@ -26,6 +92,7 @@ const GetInventary = () => {
         'Pescado'
     ];
 
+    // Unidades predefinidas
     const predefinedUnits = [
         'Kilogramos',
         'Gramos',
@@ -38,6 +105,7 @@ const GetInventary = () => {
         'Galón'
     ];
 
+    // Función get para traer los datos del servidor 
     const fetchInventory = async () => {
         try {
             const response = await axios.get('http://localhost:3001/inventories');
@@ -47,22 +115,25 @@ const GetInventary = () => {
         }
     };
 
+    // Función para manejar los edits
     const handleEdit = (item) => {
         setSelectedItem(item);
     };
 
+    // Se hace el patch para que se pueda actualizar un elemento
     const handleUpdate = async () => {
         try {
             const url = `http://localhost:3001/inventories/${selectedItem.id}`;
             const response = await axios.patch(url, selectedItem);
             console.log('Inventory item updated:', response.data);
-            setSelectedItem(null); // Clear selected item after update
-            fetchInventory(); // Refresh inventory list after update
+            setSelectedItem(null); // Limpiar el item seleccionado después de la actualización
+            fetchInventory(); // Actualizar la lista de inventario después de la actualización
         } catch (error) {
             console.error('Error updating inventory item:', error);
         }
     };
 
+    // Función para manejar el cambio en los campos de edición
     const handleChange = (e) => {
         const { name, value } = e.target;
         setSelectedItem({
@@ -71,6 +142,7 @@ const GetInventary = () => {
         });
     };
 
+    // Eliminar un elemento del inventario
     const deleteItem = async (id) => {
         const url = `http://localhost:3001/inventories/${id}`;
         try {
@@ -82,12 +154,14 @@ const GetInventary = () => {
         }
     };
 
+    // Función para manejar el clic en el botón de eliminación
     const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this item?')) {
+        if (window.confirm('Estás seguro de eliminar este ítem?')) {
             deleteItem(id);
         }
     };
 
+    // Función para filtrar los elementos pos categoría o nombre
     const searchInventory = () => {
         return inventory.filter(item =>
             (item.item.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -95,106 +169,117 @@ const GetInventary = () => {
         );
     };
 
+    // Función para manejar el cambio en el campo de búsqueda
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
     };
 
     return (
-        <div className="inventory-wrapper">
-            <h1>Inventario</h1>
-            <input
-                type="text"
-                placeholder="Busca el producto o categoría..."
-                value={searchTerm}
-                onChange={handleSearch}
-                className="search-input"
-            />
-            <table className="inventory-table">
-                <thead>
-                    <tr>
-                        <th>Artítulo</th>
-                        <th>Unidad</th>
-                        <th>Categoria</th>
-                        <th>Cantidad</th>
-                        <th>Fecha</th>
-                        <th>Acciones</th>
+        <div className="Div-Get-Inventory">
+        <h1 className="H1-Get-Inventory">Inventario</h1>
+        <input
+            className="Search-Get-Inventory"
+            type="text"
+            placeholder="Busca el producto o categoría..."
+            value={searchTerm}
+            onChange={handleSearch}
+        />
+        <table className="Get-inventory-table">
+            <thead>
+                <tr>
+                    <th>Artítulo</th>
+                    <th>Unidad</th>
+                    <th>Categoria</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {searchInventory().map(item => (
+                    <tr className="Get-inventory-item" key={item.id}>
+                        <td>{item.item}</td>
+                        <td>{item.unit_of_measure}</td>
+                        <td>{item.category}</td>
+                        <td>{item.quantity}</td>
+                        <td>{item.date}</td>
+                        <td>
+                            <button className="Button-Get-Inventory" onClick={() => handleEdit(item)}>
+                                Edit
+                            </button>
+                            <button className="Button-Get-Inventory" onClick={() => handleDelete(item.id)}>
+                                Delete
+                            </button>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {searchInventory().map(item => (
-                        <tr className="inventory-item" key={item.id}>
-                            <td>{item.item}</td>
-                            <td>{item.unit_of_measure}</td>
-                            <td>{item.category}</td>
-                            <td>{item.quantity}</td>
-                            <td>{item.date}</td>
-                            <td>
-                                <button onClick={() => handleEdit(item)}>
-                                    Edit
-                                </button>
-                                <button onClick={() => handleDelete(item.id)}>
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
+                ))}
+            </tbody>
+        </table>
+        {selectedItem && (
+            <div className="edit-form">
+                <h2>Edit Inventory Item</h2>
+                <input
+                    className="Input-Get-Inventory"
+                    type="text"
+                    name="item"
+                    value={selectedItem.item}
+                    onChange={handleChange}
+                />
+
+                <select
+                    className="Select-Get-Inventory"
+                    name="unit_of_measure"
+                    value={selectedItem.unit_of_measure}
+                    onChange={handleChange}
+                >
+                    {predefinedUnits.map((unit, index) => (
+                        <option key={index} value={unit}>
+                            {unit}
+                        </option>
                     ))}
-                </tbody>
-            </table>
-            {selectedItem && (
-                <div className="edit-form">
-                    <h2>Edit Inventory Item</h2>
-                    <input
-                        type="text"
-                        name="item"
-                        value={selectedItem.item}
-                        onChange={handleChange}
-                    />
+                </select>
 
-                    <select
-                        name="unit_of_measure"
-                        value={selectedItem.unit_of_measure}
-                        onChange={handleChange}
-                    >
-                        {predefinedUnits.map((unit, index) => (
-                            <option key={index} value={unit}>
-                                {unit}
-                            </option>
-                        ))}
-                    </select>
+                <select
+                    className="Select-Get-Inventory"
+                    name="category"
+                    value={selectedItem.category}
+                    onChange={handleChange}
+                >
+                    {predefinedCategories.map((category, index) => (
+                        <option key={index} value={category}>
+                            {category}
+                        </option>
+                    ))}
+                </select>
 
-                    <select
-                        name="category"
-                        value={selectedItem.category}
-                        onChange={handleChange}
-                    >
-                        {predefinedCategories.map((category, index) => (
-                            <option key={index} value={category}>
-                                {category}
-                            </option>
-                        ))}
-                    </select>
+                <input
+                    className="Input-Get-Inventory"
+                    type="number"
+                    name="quantity"
+                    value={selectedItem.quantity}
+                    onChange={handleChange}
+                />
 
-                    <input
-                        type="number"
-                        name="quantity"
-                        value={selectedItem.quantity}
-                        onChange={handleChange}
-                    />
+                <input
+                    className="Input-Get-Inventory"
+                    type="date"
+                    name="date"
+                    value={selectedItem.date}
+                    onChange={handleChange}
+                />
 
-                    <input
-                        type="date"
-                        name="date"
-                        value={selectedItem.date}
-                        onChange={handleChange}
-                    />
-
-                    <button onClick={() => handleUpdate()}>
-                        Update
-                    </button>
-                </div>
-            )}
-            <div className="Vamos" onClick={() => goToInventory('/inventorie')}>Añadir Productos</div>
+                <button className="Button-Get-Inventory"  onClick={() => handleUpdate()}>
+                    Update
+                </button>
+            </div>
+        )}
+        <div className='separator'>
+            <div className="Button-Get-Inventory" onClick={() => exportPDF()}>
+                Exportar a PDF
+            </div>
+            <div className="Button-Get-Inventory" onClick={() => goToInventory('/inventorie')}>Volver </div>
         </div>
+    </div>
     );
 };
 

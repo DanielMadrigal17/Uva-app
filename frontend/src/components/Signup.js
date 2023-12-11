@@ -79,7 +79,7 @@ return (
                         <label>
                             <input className="submit" type='submit' value="Registrar" />
                         </label>
-                <div>Ya tienes una cuenta? <a href="#login" onClick={handleClick} >inicia sesión</a>.</div>
+                <div>Ya tienes una cuenta? <a href="/" onClick={handleClick} >inicia sesión</a>.</div>
             </form>
             <br />
     </div>
