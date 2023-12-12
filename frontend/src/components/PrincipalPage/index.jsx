@@ -12,24 +12,11 @@ import Footer from '../Footer/Footer';
 
 function PrincipalPage() {
 
-  const [loading, setLoading] = useState(false);
 
-  const ChangeState=(page)=>{
-    setLoading(true);
-    setTimeout(()=>{
-      setLoading(false);
-      navigation(page)
-    }, 3000);
-  }
+
   const navigation = useNavigate();
 
-  if(loading){
-    return (
-      <Loader></Loader>
-    )
-  } else{
-
-  function goToFiles() {
+  function goToFoodExpenses() {
     navigation('/food_expenses');
   }
   function goToInventary() {
@@ -40,6 +27,9 @@ function PrincipalPage() {
   }
   function goToListAssistance() {
     navigation('/list_assistance');
+  }
+  function goToOrders() {
+    navigation('/orders');
   }
 
   return (
@@ -71,7 +61,9 @@ function PrincipalPage() {
           <div className="Vamos" onClick={()=>goToInventary('/inventorie')}>Vamos</div>
 
         </div>
+        
       </div>
+     
 
       <div class="RegistrosIcono">
         <div class="details">
@@ -79,7 +71,7 @@ function PrincipalPage() {
           <div class="cardText">
             Chequea todos los registros y datos ingresados durante este día.
           </div>
-          <div className="Vamos" onClick={()=>goToFiles('/food_expenses')}>Vamos</div>
+          <div className="Vamos" onClick={()=>goToFoodExpenses('/food_expenses')}>Vamos</div>
         </div>
       </div>
 
@@ -92,7 +84,8 @@ function PrincipalPage() {
           <div className="Vamos" onClick={()=>goToBranchOffices('/branch_offices')}>Vamos</div>
         </div>
       </div>
-
+      
+      
 
       <div class="ListaIcono">
         <div class="details">
@@ -114,7 +107,7 @@ function PrincipalPage() {
 </div>
   )
 }
-}
+
 
 
 export default PrincipalPage
