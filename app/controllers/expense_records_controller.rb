@@ -28,6 +28,7 @@ class ExpenseRecordsController < ApplicationController
 
 
     if @expense_record.save
+      update_quantity_total(@expense_record)
       render json: @expense_record, status: :created
     else
       render json: @expense_record.errors, status: :unprocessable_entity
@@ -50,6 +51,20 @@ class ExpenseRecordsController < ApplicationController
   end
 
   private
+
+  def update_quantity_total(record)
+    today_foods_used = ExpenseRecord.where(article: record.article)
+                                  .where("DATE(date) = ?", Date.today)
+                                  .sum(:foods_used).to_i
+    
+    yesterday_foods_used = ExpenseRecord.where(article: record.article)
+                                      .where("DATE(date) = ?", Date.yesterday)
+                                      .sum(:foods_used).to_i
+
+    total_foods_used = today_foods_used + yesterday_foods_used
+    record.update_column(:quantitive_total, total_foods_used)
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_expense_record
       @expense_record = ExpenseRecord.find(params[:id])

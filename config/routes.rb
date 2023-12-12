@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'private/test'
+  get '/expense_records/calculate_foods_used', to: 'expense_records#calculate_foods_used'
+
   resources :aliments_categories
   resources :children
   resources :food_expenses
@@ -13,7 +15,6 @@ Rails.application.routes.draw do
   resources :range_registers
   resources :inventories
   resources :expense_records
-
 
 
   devise_for :users, 
