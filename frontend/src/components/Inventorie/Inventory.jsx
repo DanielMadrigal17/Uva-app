@@ -20,8 +20,8 @@ function Inventory () {
         item: '',
         unit_of_measure: '',
         category: '',
-        quantity: 0,
-        date: ''
+        quantity: 1,
+        // date: ''
     });
 
     const predefinedCategories = [
@@ -57,9 +57,10 @@ function Inventory () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const currentDate = new Date().toISOString().split('T')[0]; // Obtiene la fecha en formato 'YYYY-MM-DD'
         try {
         const response = await axios.post('http://localhost:3001/inventories', {
-            inventory: formData
+            inventory: {...formData, date: currentDate} // Agregando la fecha al objeto de datos
         });
         console.log('Inventory created:', response.data);
         window.location.reload();
@@ -149,7 +150,7 @@ function Inventory () {
                     onChange={handleChange}
                 />
 
-                <label htmlFor="date">Date:</label>
+                {/* <label htmlFor="date">Date:</label>
                 <input
                     className="Input-Inventory"
                     type="date"
@@ -158,7 +159,7 @@ function Inventory () {
                     value={formData.date}
                     onChange={handleChange}
                     min="1970-01-01"
-                />
+                /> */}
 
                 <div id="tenth" class="buttonBox">
                     <button>

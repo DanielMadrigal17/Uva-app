@@ -68,7 +68,11 @@ const FoodExpenseForm = () => {
     }
   };
 
+  
+
   return (
+
+    <div>
     <form className='Holiwiiiii' onSubmit={handleSubmit}>
       <label htmlFor="responsible_name">Nombre del responsable:</label><br />
       <input type="text" id="responsible_name" name="responsible_name" value={formData.responsible_name} onChange={handleChange} /><br />
@@ -107,6 +111,8 @@ const FoodExpenseForm = () => {
         Vamos
       </div>
     </form>
+
+    </div>
   );
 };
 

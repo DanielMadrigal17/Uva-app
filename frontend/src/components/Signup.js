@@ -44,12 +44,13 @@ const Signup = ({ setCurrUser, setShow }) => {
     };
 
 return (
-    <div className="signup-div">
-            <header><NavBar></NavBar> </header>
-            <img className='signup-uvaLogo2' src={uva} alt='uva logo'></img>
-            <p className='signup-eslogan2'> UVA App, organiza y administra <br/>
-                    tu empresa de la mejor manera. </p>
-            <form className="signup-form" ref={formRef} onSubmit={handleSubmit}>
+    <div className="signup-container">
+    <div className="signup-logo">
+        <img className='signup-uvaLogo2' src={uva} alt='uva logo' />
+        <p className='signup-eslogan2'>UVA App, organiza y administra<br />tu empresa de la mejor manera.</p>
+    </div>
+    <div className="signup-form">
+    <form className="signup-form" ref={formRef} onSubmit={handleSubmit}>
                 <p className="signup-title">Registrate </p>
                 <p className="signup-message">Registrate para tener acceso a UVA. </p>
                 <div class="signup-flex">
@@ -80,7 +81,7 @@ return (
                         </label>
                 <div>Ya tienes una cuenta? <a href="/" onClick={handleClick} >inicia sesión</a>.</div>
             </form>
-            <br />
+    </div>
     </div>
     );
 };
