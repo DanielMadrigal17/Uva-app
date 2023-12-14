@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import fondo2 from '../../assets/img/fondo2.jpg';
 
 const FoodOrderForm = () => {
 const [formData, setFormData] = useState({
@@ -46,6 +47,22 @@ const handleSubmit = async (e) => {
 };
 
 return (
+
+    <div>
+
+<img className='fondo' src={fondo2} alt='fondo'></img>
+
+
+        <header className="header3">
+            <div className="text-box">
+            <div className="loader2">
+                <h1 className="heading-primary2">Pedidos</h1>
+                    <span className="heading-primary-sub4">Algo tengo que poner aquí</span>
+            </div>
+            </div>
+        </header>
+
+
     <form onSubmit={handleSubmit}>
     <div>
         <label>
@@ -127,6 +144,7 @@ return (
         <button type="submit">Enviar</button>
     </div>
     </form>
+    </div>
 );
 };
 

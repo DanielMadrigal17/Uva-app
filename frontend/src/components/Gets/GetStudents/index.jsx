@@ -84,6 +84,27 @@ const Estudiantes = () => {
         pdfMake.createPdf(docDefinition).download('estudiantes.pdf');
     };
     
+    const getCurrentWeekDates = () => {
+        const today = new Date();
+        const currentDay = today.getDay(); // Domingo: 0, Lunes: 1, ..., Sábado: 6
+        const diff = today.getDate() - currentDay + (currentDay === 0 ? -6 : 1); // Obtener el primer día de la semana
+        
+        const startOfWeek = new Date(today.setDate(diff));
+        const endOfWeek = new Date(today.setDate(diff + 4)); // Sumar 4 días para obtener el viernes
+        
+        const startDate = startOfWeek.getDate();
+        const endDate = endOfWeek.getDate();
+        const currentMonth = today.getMonth() + 1; // Sumar 1 porque los meses empiezan en 0
+        
+        return {
+            start: startDate,
+            end: endDate,
+            month: currentMonth,
+            year: today.getFullYear(),
+        };
+        }
+    const weekDates = getCurrentWeekDates();
+
 
     useEffect(() => {
         obtenerEstudiantes();
@@ -145,7 +166,30 @@ const Estudiantes = () => {
 
     return (
         <div className="estudiantes-wrapper">
-            <h1>Lista de Estudiantes</h1>
+            <table className="header-table">
+                <tbody>
+                    <tr>
+                        <td>
+                            DIRECCIÓN NACIONAL DE CEN-CINAI DIRECCIÓN TÉCNICA - UNAT
+                        </td>
+                        <td>
+                            Versión: 01
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            Procedimiento | Procedimiento para el traslado de niños y niñas mediante contratación de Servicios de Transporte para ser Atendidos en API | CÓDIGO: API-N01-P01-03
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            <h2 className='h1-students'>CONTROL DE ENTRADA Y SALIDA DEL ESTABLECIMIENTO DE LA NIÑA Y EL NIÑO QUE UTILIZA TRANSPORTE</h2>
+            <div>
+                <h2 className='h2-students'>
+                    Semana del {weekDates.start} al {weekDates.end} , Mes: {weekDates.month}, Año: {weekDates.year}
+                </h2>
+            </div>
             {estudiantes.length === 0 ? (
                 <h3>No hay estudiantes registrados en este momento.</h3>
                 ) : (
@@ -260,15 +304,6 @@ const Estudiantes = () => {
                     name="official_name"
                     id="official_name"
                     value={estudianteSeleccionado.official_name}
-                    onChange={handleChange}
-                    />
-            
-                    <label htmlFor="children_id">ID del Estudiante:</label>
-                    <input
-                    type="text"
-                    name="children_id"
-                    id="children_id"
-                    value={estudianteSeleccionado.children_id}
                     onChange={handleChange}
                     />
                 

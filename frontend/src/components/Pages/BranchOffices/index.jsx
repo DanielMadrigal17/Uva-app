@@ -1,6 +1,5 @@
 import React from 'react';
 import "./styles.css";
-import NavBarPrincipal from '../../NavBarPrincipal/NavBarPrincipal';
 import SideBar from '../../SideBar/SideBar';
 import fondo from '../../../assets/img/fondo.jpeg';
 import map from '../../../assets/img/map.png';
@@ -10,9 +9,6 @@ function BranchOffices() {
   return (
     <div>
       <img className='fondo' src={fondo} alt='fondo'></img>
-
-      <NavBarPrincipal></NavBarPrincipal>
-
       <header className="header3">
         <div className="text-box">
           <div className="loader2">

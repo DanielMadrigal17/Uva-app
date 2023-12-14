@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import'./styles.css'
-import NavBarPrincipal from '../../NavBarPrincipal/NavBarPrincipal';
 import SideBar from '../../SideBar/SideBar';
 import fondo2 from '../../../assets/img/fondo2.jpg';
 
@@ -27,7 +26,6 @@ function Orders() {
     <div>
         <img className='fondo' src={fondo2} alt='fondo'></img>
 
-<NavBarPrincipal></NavBarPrincipal>
 
 <header className="header3">
 	

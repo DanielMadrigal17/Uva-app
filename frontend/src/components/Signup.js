@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import axios from "axios"; 
-import NavBar from '../components/NavBar/NavBar'
+// import NavBar from '../components/NavBar/NavBar'
 import uva from '../assets/img/uva.png'
 import { useNavigate } from "react-router-dom";
 

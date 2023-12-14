@@ -45,6 +45,6 @@ class FoodOrdersController < ApplicationController
   end
 
   def food_order_params
-    params.require(:food_order).permit(:article,:unit_of_measurement, :requested_amount, :received_amount, :week, :month, :year, :category)
+    params.require(:food_order).permit(:article,:unit_of_measurement, :requested_amount, :received_amount, :category)
   end
 end

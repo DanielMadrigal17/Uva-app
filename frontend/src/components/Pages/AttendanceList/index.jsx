@@ -4,7 +4,6 @@ import './styles.css';
 import manitas from '../../../assets/img/manitas.png';
 import fondo from '../../../assets/img/fondo.jpeg';
 import SideBar from '../../SideBar/SideBar';
-import NavBarPrincipal from '../../../components/SideBar/SideBar';
 import Footer from '../../Footer/Footer';
 import StudentRegistrationForm from '../../StudentRegistrationForm';
 import GetStudents from '../../Gets/GetStudents';
@@ -20,7 +19,6 @@ function AttendanceList() {
     <div>
       <img className='fondo' src={fondo} alt='fondo'></img>
 
-      <NavBarPrincipal></NavBarPrincipal>
 
       <header className="header3">
         <div className="text-box">

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import './styles.css'
 import { useNavigate } from 'react-router-dom';
+import SideBar from '../SideBar/SideBar';
+import fondo2 from '../../assets/img/fondo2.jpg';
 
 const Orders = () => {
     const navigate = useNavigate()
@@ -16,9 +18,6 @@ const Orders = () => {
     unit_of_measurement: '',
     requested_amount: '',
     received_amount: '',
-    week: '',
-    month: '',
-    year: '',
     category: ''
 });
 
@@ -35,15 +34,11 @@ const handleSubmit = async (e) => {
     try {
         const response = await axios.post('http://localhost:3001/food_orders', formData);
         console.log('Response from POST request:', response.data);
-        // Restablecer el formulario después de enviar los datos
         setFormData({
             article: '',
             unit_of_measurement: '',
             requested_amount: '',
             received_amount: '',
-            week: '',
-            month: '',
-            year: '',
             category: ''
         });
     } catch (error) {
@@ -51,8 +46,46 @@ const handleSubmit = async (e) => {
     }
 };
 
+    const getCurrentWeekDates = () => {
+        const today = new Date();
+        const currentDay = today.getDay(); // Domingo: 0, Lunes: 1, ..., Sábado: 6
+        const diff = today.getDate() - currentDay + (currentDay === 0 ? -6 : 1); // Obtener el primer día de la semana
+        
+        const startOfWeek = new Date(today.setDate(diff));
+        const endOfWeek = new Date(today.setDate(diff + 4)); // Sumar 4 días para obtener el viernes
+        
+        const startDate = startOfWeek.getDate();
+        const endDate = endOfWeek.getDate();
+        const currentMonth = today.getMonth() + 1; // Sumar 1 porque los meses empiezan en 0
+        
+        return {
+            start: startDate,
+            end: endDate,
+            month: currentMonth,
+            year: today.getFullYear(),
+        };
+        }
+    const weekDates = getCurrentWeekDates();
+    const [currentWeekDates, setCurrentWeekDates] = useState(getCurrentWeekDates());
+
+    const updateCurrentWeekDates = () => {
+        setCurrentWeekDates(getCurrentWeekDates());
+    };
+
 return (
     <div>
+
+    <img className='fondo' src={fondo2} alt='fondo'></img>
+    <header className="header3">
+        <div className="text-box">
+            <div className="loader2">
+                <h1 className="heading-primary2">Pedidos</h1>
+                <span className="heading-primary-sub4">Algo tengo que poner aquí</span>
+            </div>
+        </div>
+    </header>
+
+
     <form className="myForm" onSubmit={handleSubmit}>
             <label>
                 Articulo:
@@ -99,7 +132,7 @@ return (
                     onChange={handleChange}
                 />
             </label>
-            <label>
+            {/* <label>
                 Semana:
                 <input
                     type="text"
@@ -125,10 +158,11 @@ return (
                     value={formData.year}
                     onChange={handleChange}
                 />
-            </label>
+            </label> */}
             <button type="submit">Agregar</button>
         </form>
         <button className="Vamos" onClick={()=>goToGetOrders('/get_orders')}>Vamos</button>
+        <SideBar></SideBar>
     </div>
 )
 }

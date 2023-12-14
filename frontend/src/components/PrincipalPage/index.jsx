@@ -1,19 +1,13 @@
 import React from 'react'
 import './PrincipalPage.css'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
-import NavBarPrincipal from '../NavBarPrincipal/NavBarPrincipal';
 import SideBar from '../SideBar/SideBar';
 import fondo from '../../assets/img/fondo.jpeg';
 import niños2 from '../../assets/img/niños2.png';
-import Loader from '../Loader';
 import Footer from '../Footer/Footer';
 
 
 function PrincipalPage() {
-
-
-
   const navigation = useNavigate();
 
   function goToFoodExpenses() {
@@ -38,7 +32,6 @@ function PrincipalPage() {
     <div>
             
       <img className='fondo' src={fondo} alt='fondo'></img>
-      <NavBarPrincipal></NavBarPrincipal>
 
     <div>
       <header className="header3">
@@ -61,9 +54,7 @@ function PrincipalPage() {
           <div className="Vamos" onClick={()=>goToInventary('/inventorie')}>Vamos</div>
 
         </div>
-        
       </div>
-     
 
       <div class="RegistrosIcono">
         <div class="details">

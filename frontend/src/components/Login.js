@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import uva from '../assets/img/uva.png';
-import NavBar from '../components/NavBar/NavBar';
+// import NavBar from '../components/NavBar/NavBar';
 import '../assets/styles.css';
 import { useNavigate } from "react-router-dom";
 

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./styles.css"
 import SideBar from '../SideBar/SideBar';
-import NavBarPrincipal from '../NavBarPrincipal/NavBarPrincipal'
 import carton from '../../assets/img/carton.png';
 import fondo from '../../assets/img/fondo.jpeg';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 function Inventory () {
@@ -22,6 +22,13 @@ function Inventory () {
         category: '',
         quantity: 1,
         // date: ''
+    });
+
+    const [errors, setErrors] = useState({
+        item: '',
+        unit_of_measure: '',
+        category: '',
+        quantity: ''
     });
 
     const predefinedCategories = [
@@ -47,6 +54,17 @@ function Inventory () {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        const regex = /[^\w\sñáéíóú]/gi; 
+
+        if (regex.test(value)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "No se permite ingresar emojis ni números"
+            })
+            return                 
+        }
+
         if (name === 'quantity' && parseInt(value) < 1) {
             // Si el número es menor que 1, establece la cantidad en 1
             setFormData({ ...formData, [name]: 1 });
@@ -57,23 +75,58 @@ function Inventory () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const { item, unit_of_measure, category, quantity } = formData;
+
+        const newErrors = {
+            item: item.trim() === '' ? 'Por favor, completa el campo de Producto.' : '',
+            unit_of_measure: unit_of_measure === '' ? 'Selecciona una Unidad.' : '',
+            category: category === '' ? 'Selecciona una Categoría.' : '',
+            quantity: quantity === '' ? 'Por favor, completa el campo Cantidad.' : ''
+        };
+
+        setErrors(newErrors);
+
+        const errorValues = Object.values(newErrors).filter((error) => error !== '');
+
+        if (errorValues.length > 0) {
+            Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: errorValues.join('\n') // Muestra mensajes de error separados por nueva línea
+        });
+        return;
+        }
+
         const currentDate = new Date().toISOString().split('T')[0]; // Obtiene la fecha en formato 'YYYY-MM-DD'
         try {
-        const response = await axios.post('http://localhost:3001/inventories', {
-            inventory: {...formData, date: currentDate} // Agregando la fecha al objeto de datos
-        });
-        console.log('Inventory created:', response.data);
-        window.location.reload();
+            const response = await axios.post('http://localhost:3001/inventories', {
+            inventory: { ...formData, date: currentDate } // Agregando la fecha al objeto de datos
+            });
+            console.log('Inventory created:', response.data);
+        
+            Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Se agrego correctamente.",
+            showConfirmButton: false,
+            timer: 1500
+            });
+        
+            window.location.reload();
         } catch (error) {
-        console.error('Error creating inventory:', error);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "No puedes agregara productos en blanco.",
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
-    };
-
+        };
 
     return (
     <div>
             <img className='fondo' src={fondo} alt='fondo'></img>
-            <NavBarPrincipal></NavBarPrincipal>
             <header className="header3">
                 <div className='VerInventario' onClick={() => goToget('/get_inventorie')}>
                     <button>
@@ -97,7 +150,7 @@ function Inventory () {
         <div>
             <form onSubmit={handleSubmit} className="Form-Inventory">
                 <h1>Agregar producto al Inventario</h1>
-                <label className="form-label" htmlFor="item">Item:</label>
+                <label className="form-label" htmlFor="item">Producto:</label>
                 <input
                     className="Input-Inventory"
                     type="text"
@@ -108,7 +161,7 @@ function Inventory () {
                     onChange={handleChange}
                 />
 
-                <label htmlFor="unit_of_measure">Unit of Measure:</label>
+                <label htmlFor="unit_of_measure">Unidad de medida:</label>
                 <select
                     className='Select-inventory'
                     id="unit_of_measure"
@@ -124,7 +177,7 @@ function Inventory () {
                     ))}
                 </select>
 
-                <label htmlFor="category">Category:</label>
+                <label htmlFor="category">Categoria:</label>
                 <select
                     className='Select-inventory'
                     id="category"
@@ -132,7 +185,7 @@ function Inventory () {
                     value={formData.category}
                     onChange={handleChange}
                 >
-                    <option value="">Select a category</option>
+                    <option value="">Seleccione una categoria</option>
                     {predefinedCategories.map((category) => (
                     <option key={category} value={category}>
                         {category}
@@ -140,7 +193,7 @@ function Inventory () {
                     ))}
                 </select>
 
-                <label htmlFor="quantity">Quantity:</label>
+                <label htmlFor="quantity">Cantidad:</label>
                 <input
                     className="Input-Inventory"
                     type="number"
@@ -149,18 +202,7 @@ function Inventory () {
                     value={formData.quantity}
                     onChange={handleChange}
                 />
-
-                {/* <label htmlFor="date">Date:</label>
-                <input
-                    className="Input-Inventory"
-                    type="date"
-                    id="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    min="1970-01-01"
-                /> */}
-
+                
                 <div id="tenth" class="buttonBox">
                     <button>
                         <span>A</span>

@@ -1,9 +1,10 @@
 .tableContainer {
     margin: 20px;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 8px;
-    background-color: #f7f7f7;
+    background-color: #f7f7f73f;
+    color: black;
 }
 
 .food-orders-table {
@@ -14,7 +15,7 @@
 
 .food-orders-table th,
 .food-orders-table td {
-    border: 1px solid #ccc;
+    border: 2px solid #000000;
     padding: 8px;
     text-align: center;
 }
@@ -46,3 +47,9 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
+
+.h2-orders{
+    font-size: 20px;
+    margin-right: 80%;
+}
+

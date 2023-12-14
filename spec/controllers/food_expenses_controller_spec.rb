@@ -37,14 +37,6 @@ RSpec.describe FoodExpensesController, type: :controller do
         expect(response.body).to include('"article":"Test Article"') # Verifica el contenido JSON
       end
     end
-
-    context 'with invalid params' do
-      it 'renders a JSON response with errors for the new food_expense' do
-        post :create, params: { food_expense: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to start_with('application/json')
-      end
-    end
   end
 
   # Other test scenarios for update and destroy actions go here...

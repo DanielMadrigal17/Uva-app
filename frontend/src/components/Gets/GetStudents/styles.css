@@ -1,14 +1,13 @@
-/* Estilos para el contenedor principal */
-/* .estudiantes-wrapper {
+.estudiantes-wrapper {
   font-family: Arial, sans-serif;
-  max-width: 800px;
+  max-width: 400%;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #000000;
+  background-color: #00000042;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-} */
+}
 
 /* Estilos para el título */
 .estudiantes-wrapper h1 {
@@ -21,18 +20,21 @@
   width: 100%;
   border-collapse: collapse;
   color: black;
+  
 }
 
 /* Estilos para las celdas */
 .estudiante-item {
-  background-color: #fff;
+  background-color: #ffffff2c;
+
 }
 
 /* Estilos para las celdas en la primera fila (encabezados) */
 .estudiantes-table th {
-  background-color: #f2f2f2;
+  background-color: #f2f2f228;
   padding: 10px;
   color: black;
+  border: 2px solid black;
 }
 
 /* Estilos para las celdas en el cuerpo de la tabla */
@@ -40,9 +42,44 @@
   border: 1px solid #ddd;
   padding: 10px;
   color: black;
+  border: 2px solid black;
+
 }
 
 /* Estilos para alternar colores de filas */
 .estudiantes-table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #f9f9f944;
+  border: 2px solid black;
+
+}
+
+.h1-students{
+  color: black;
+}
+
+.h2-students {
+  font-size: 20px;
+  text-align: center;
+  color: #000000;
+  margin: 20px 0;
+  animation: fade-in 1s ease-in-out; 
+  transform: scale(1.1),
+}
+
+.header-table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+.header-table td {
+  padding: 10px;
+  border: 2px solid #000000;
+  text-align: center;
+}
+
+.header-table tbody tr:first-child td {
+  background-color: #f2f2f27c;
+  font-weight: bold;
+  color: black;
 }

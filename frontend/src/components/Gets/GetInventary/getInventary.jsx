@@ -4,6 +4,8 @@ import pdfMake from 'pdfmake/build/pdfmake'; // Importa pdfmake
 import pdfFonts from 'pdfmake/build/vfs_fonts'; // Importa las fuentes
 import axios from 'axios';
 import './getInventory.css'; 
+import Swal from 'sweetalert2'
+
 
 const GetInventary = () => {
     // Inicio de estados
@@ -149,17 +151,30 @@ const GetInventary = () => {
             await axios.delete(url);
             console.log('Inventory item deleted successfully');
             fetchInventory();
-        } catch (error) {
+            } catch (error) {
             console.error('Error deleting inventory item:', error);
-        }
-    };
-
-    // Función para manejar el clic en el botón de eliminación
-    const handleDelete = async (id) => {
-        if (window.confirm('Estás seguro de eliminar este ítem?')) {
+            }
+        };
+        
+        const handleDelete = async (id) => {
+            const result = await Swal.fire({
+            title: "Estas Segur@?",
+            text: "No podrás revertir esto.!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, elíminalo!"
+            });
+        
+            if (result.isConfirmed) {
             deleteItem(id);
-        }
-    };
+            await Swal.fire({
+                title: "Eliminado correctamente.",
+                icon: "success"
+            });
+            }
+        };
 
     // Función para filtrar los elementos pos categoría o nombre
     const searchInventory = () => {
@@ -257,14 +272,6 @@ const GetInventary = () => {
                     type="number"
                     name="quantity"
                     value={selectedItem.quantity}
-                    onChange={handleChange}
-                />
-
-                <input
-                    className="Input-Get-Inventory"
-                    type="date"
-                    name="date"
-                    value={selectedItem.date}
                     onChange={handleChange}
                 />
 
