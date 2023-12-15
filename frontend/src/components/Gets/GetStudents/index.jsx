@@ -15,7 +15,14 @@ const Estudiantes = () => {
     }
 
     const exportPDF = () => {
-        const data = estudiantes.map((estudiante) => [
+        const establishmentInfo = [
+            ['DIRECCIÓN NACIONAL DE CEN-CINAI DIRECCIÓN TÉCNICA - UNAT Versión: 01'],
+            ['Procedimiento | Procedimiento para el traslado de niños y niñas mediante contratación de Servicios de Transporte para ser Atendidos en API | CÓDIGO: API-N01-P01-03'],
+            ['CONTROL DE ENTRADA Y SALIDA DEL ESTABLECIMIENTO DE LA NIÑA Y EL NIÑO QUE UTILIZA TRANSPORTE'],
+            [`Semana del ${weekDates.start} al ${weekDates.end}, Mes: ${weekDates.month}, Año: ${weekDates.year}`],
+        ];
+
+        const studentTableData = estudiantes.map((estudiante) => [
             estudiante.name,
             estudiante.entry_hour_date,
             estudiante.departure_hour_date,
@@ -25,15 +32,31 @@ const Estudiantes = () => {
             estudiante.carrier_name,
             estudiante.official_name,
         ]);
-    
+
         const docDefinition = {
             content: [
                 {
-                    text: 'Lista de Niños',
-                    style: 'header',
-                    alignment: 'center',
-                    margin: [0, 0, 0, 10],
+                    table: {
+                        headerRows: 1,
+                        widths: ['*'],
+                        body: establishmentInfo,
+                    },
+                    layout: {
+                        hLineWidth: function (i, node) {
+                            return i === 0 || i === node.table.body.length ? 2 : 1;
+                        },
+                        vLineWidth: function (i, node) {
+                            return 0;
+                        },
+                        hLineColor: function (i, node) {
+                            return i === 0 || i === node.table.body.length ? 'black' : 'gray';
+                        },
+                        vLineColor: function (i, node) {
+                            return 'white';
+                        },
+                    },
                 },
+                { text: '\n\n' }, // Add some space between establishment info and student table
                 {
                     table: {
                         headerRows: 1,
@@ -49,20 +72,42 @@ const Estudiantes = () => {
                                 { text: 'Nombre del Transportista', style: 'tableHeader' },
                                 { text: 'Nombre del Oficial', style: 'tableHeader' },
                             ],
-                            ...data.map((row) =>
+                            ...studentTableData.map((row) =>
                                 row.map((cell) => ({
                                     text: cell,
-                                    style: 'tableBody', // Aplicar estilo de tabla al cuerpo
+                                    style: 'tableBody', // Apply table style to the body
                                 }))
                             ),
                         ],
                     },
                 },
             ],
+
+            footer: function (currentPage, pageCount) {
+                return {
+                    margin: [40, 10],
+                    columns: [
+                        {
+                            text: 'Logo', // Reemplaza <TU_LOGO_ENCODED> por la imagen en base64
+                            width: 50,
+                            height: 50,
+                            alignment: 'left',
+                        },
+                        {
+                            text: `Página ${currentPage.toString()} de ${pageCount}`,
+                            alignment: 'right',
+                        },
+                    ],
+                };
+            },
+            
             styles: {
                 header: {
                     fontSize: 24,
                     bold: true,
+                    color: '#333',
+                    alignment: 'center',
+                    margin: [0, 0, 0, 10],
                 },
                 tableHeader: {
                     bold: true,
@@ -76,13 +121,14 @@ const Estudiantes = () => {
                     fontSize: 10,
                     alignment: 'center',
                     margin: [0, 5, 0, 5],
-                    height: 20, // Altura de las filas en el cuerpo de la tabla
+                    height: 20,
                 },
             },
         };
-    
+
         pdfMake.createPdf(docDefinition).download('estudiantes.pdf');
     };
+
     
     const getCurrentWeekDates = () => {
         const today = new Date();
@@ -319,12 +365,12 @@ const Estudiantes = () => {
 
                 {estudiantes.length > 0 && (
                     <button onClick={exportPDF}>Exportar a PDF</button>
-                )}  
+                    )}  
 
-                    <div className="Button-Get-Inventory" onClick={() => goBack('/list_assistance')}>Volver </div>
+                    <div className="Button-Get-students" onClick={() => goBack('/list_assistance')}>Volver </div>
 
         </div>
     );
 };
-
+ 
 export default Estudiantes;

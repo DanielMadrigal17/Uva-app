@@ -26,12 +26,11 @@ body {
 }
 
 .uvaLogo {
-margin-top: -5%;
-width: 40%;
-position: absolute;
-display:flex;
-justify-content: left;
-
+  margin-top: -5%;
+  width: 40%;
+  position: absolute;
+  display:flex;
+  justify-content: left;
 }
 
 
@@ -172,6 +171,7 @@ body {
   background-color: #ffffff;
 }
 
+
 .login-container {
   display: flex;
   align-items: center;
@@ -186,21 +186,30 @@ body {
 }
 
 .login-uvaLogo {
-  width: 50%;
-  margin-top: 10%;
-  margin-right: 30%;
+  width: 70%;
+  margin-top: -2%;
+  margin-left: -111%;
+  position: relative;
 }
 
+.PSlogan {
+  font-size: 23px;
+}
+
+
 .login-eslogan {
-  text-align: center;
-  margin-top: 20px;
+  margin-top: -20%;
+  margin-left: 5%;
   font-size: 18px;
-  color: #555555;
+  color: #ffffff;
+  position: absolute;
 }
 
 .login-form {
   width: 30%; /* Ajusta el ancho del contenedor del formulario */
   padding: 20px;
+  position: absolute;
+  margin-left: 50%;
 
 }
 
@@ -281,101 +290,100 @@ body {
   color: #ffffff;
 }
 
+/* Estilos del signup} */
 
-/* Estilos del signup */
 
 .signup-container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100vh;
   font-family: Arial, sans-serif;
+  width: 100%;
 }
 
 .signup-logo {
-  width: 50%;
+  width: 50%; /* Ajusta el ancho del contenedor del logo */
   padding: 20px;
 }
 
-.signup-uvaLogo2 {
-  width: 200px;
-}
-
-.signup-eslogan2 {
-  margin-top: 20px;
-  font-size: 18px;
-  color: #555555;
-}
-
-.signup-form {
-  width: 50%;
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 20px;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-}
-.signup-title {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-  font-size: 1.2em;
-}
-
-.signup-message {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #777;
-  font-size: 0.9em;
-}
-
-.signup-flex {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.signup-input {
-  width: calc(50% - 10px);
-  padding: 8px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.signup-submit {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  background-color: #3498db;
-  color: white;
-  cursor: pointer;
-}
-
-.signup-submit:hover {
-  background-color: #2980b9;
-}
-
-.signup-form label {
-  display: block;
+.signup-uvaLogo {
+  width: 70%;
+  margin-top: -2%;
+  margin-left: -51%;
   position: relative;
 }
 
-.signup-form label > span {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  transition: 0.3s;
-  pointer-events: none;
-  font-size: 14px;
-  color: #777;
+.PSlogan {
+  font-size: 23px;
 }
 
-.signup-form label > input:focus ~ span,
-.signup-form label > input:valid ~ span {
-  top: -10px;
-  left: 5px;
-  font-size: 12px;
-  color: #3498db;
+
+.signup-eslogan {
+  margin-top: -20%;
+  margin-left: 20%;
+  font-size: 18px;
+  color: #ffffff;
+  position: absolute;
 }
+
+.signup-form {
+  width: 30%; /* Ajusta el ancho del contenedor del formulario */
+  padding: 20px;
+}
+
+.signup-card {
+  width: 300px;
+  background-color: #181818;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+#heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 1.2em;
+}
+
+.signup-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 25px;
+  padding: 10px;
+  background-color: #ffffff;
+  box-shadow: inset 2px 5px 10px rgb(225, 225, 225);
+}
+
+.signup-input-field {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #323232;
+}
+
+.signup-btn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.signup-button2 {
+  flex: 1;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  transition: .4s ease-in-out;
+  background-image: linear-gradient(163deg, #151515 0%, #8c2c6c 100%);
+  color: #f3f3f3;
+}
+
+.signup-button2:hover {
+  background-image: linear-gradient(163deg, #8c2c6c 0%, #151515 100%);
+  color: #9f7491;
+}
+

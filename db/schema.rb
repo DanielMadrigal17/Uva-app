@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_08_144045) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_14_171917) do
   create_table "aliment_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -29,17 +29,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_144045) do
   create_table "expense_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "responsible_name"
     t.string "article"
+    t.string "category"
     t.string "unit_of_measurement"
     t.integer "previous_inventory"
     t.integer "entry"
+    t.string "date"
+    t.integer "quantity"
     t.string "foods_used"
     t.integer "quantitive_total"
     t.integer "final_inventory"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "category"
-    t.string "date"
-    t.integer "quantity"
   end
 
   create_table "food_expenses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -68,16 +68,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_144045) do
 
   create_table "food_orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "article"
+    t.string "category"
     t.string "unit_of_measurement"
     t.integer "requested_amount"
     t.integer "received_amount"
-    t.integer "week"
-    t.string "month"
-    t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "aliment_category_id"
-    t.string "category"
+    t.date "date"
     t.index ["aliment_category_id"], name: "index_food_orders_on_aliment_category_id"
   end
 

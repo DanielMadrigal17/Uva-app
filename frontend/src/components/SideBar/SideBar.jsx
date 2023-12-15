@@ -24,6 +24,7 @@ return (
                         </span>
                     </a>
                 </li>
+            
                 <li className="has-subnav">
                     <a className='aIcons' href="./Inventorie">
                     <img className='IconNav' src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAs
@@ -44,7 +45,8 @@ return (
                 </li>
                 <li className="has-subnav">
                     <a className='aIcons' href="./food_expenses"> 
-                    <img width="48" height="48" src="https://img.icons8.com/glassmorphism/48/experimental-tax-glassmorphism.png" alt="experimental-tax-glassmorphism"/>                    <span className="nav-text">
+                    <img className='IconNav' src="https://img.icons8.com/papercut/60/ingredients.png" alt="ingredients"/>                    
+                    <span className="nav-text">
                             Gastos Semanales
                         </span>
                     </a>
@@ -127,7 +129,7 @@ return (
                 <li>
                     <a className='aIcons' href="/">
                         <i className="fa fa-power-off fa-2x"></i>
-                        <span onClick={logoutHome} className="nav-text">
+                        <span onClick={logoutHome} className="nav-text2">
                             Logout
                         </span>
                     </a>

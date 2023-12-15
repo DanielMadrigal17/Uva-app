@@ -83,3 +83,16 @@
   font-weight: bold;
   color: black;
 }
+
+.Button-Get-students{
+  padding: 10px 20px;
+  background-color: #b74ae281;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 50px;
+  margin-left: 46.5%;
+}

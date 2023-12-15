@@ -46,6 +46,6 @@ class RegisterEstudentsController < ApplicationController
     end
   
     def register_estudent_params
-      params.require(:register_estudent).permit(:name, :entry_hour_date, :departure_hour_date, :date, :absent, :present, :carrier_name, :official_name, :children_id) 
+      params.require(:register_estudent).permit(:name, :entry_hour_date, :departure_hour_date, :date, :absent, :present, :carrier_name, :official_name) 
     end
 end

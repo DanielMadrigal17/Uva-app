@@ -24,6 +24,7 @@ class ChildrenController < ApplicationController
     end
   
     # PATCH/PUT /children/1
+
     def update
       if @child.update(child_params)
         render json: @child

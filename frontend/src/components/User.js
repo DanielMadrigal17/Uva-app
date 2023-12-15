@@ -4,8 +4,6 @@ import Login from './Login'
 
 const User = ({currUser, setCurrUser}) => {
     const [show, setShow] = useState(true)
-
-    
         // return (
         //     <div>
         //         <PrincipalPage></PrincipalPage>

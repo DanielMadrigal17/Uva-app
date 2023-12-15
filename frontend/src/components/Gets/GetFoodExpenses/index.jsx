@@ -6,27 +6,58 @@ import { BiEdit } from "react-icons/bi";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import Swal from 'sweetalert2';
 
 
 const ExpenseRecordList = () => {
+  // Estados para la búsqueda, resultados filtrados, registros de gastos, edición y botón de exportación
   const [searchDate, setSearchDate] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
   const [expenseRecords, setExpenseRecords] = useState([]);
   const [editingRecord, setEditingRecord] = useState(null);
   const [showExportButton, setShowExportButton] = useState(false);
-
   const navi = useNavigate()
+
+  // Categorías y unidades predefinidas
+  const predefinedCategories = [
+    'Lácteos',
+    'No perecedero',
+    'Vegetales',
+    'Frutas',
+    'Carnes',
+    'Pescado'
+  ];
+
+// Unidades predefinidas
+  const predefinedUnits = [
+    'Kilogramos',
+    'Gramos',
+    'Litros',
+    'Mililitros',
+    'Latas',
+    'Unidades',
+    'Paquetes',
+    'Rollos',
+    'Galón'
+  ];
+
 
   const exportPDF = (data) => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
     const docDefinition = {
       content: [
         {
-          text: `Gasto de Alimentos (${currentWeekDates.start} al ${currentWeekDates.end}, mes: ${currentWeekDates.month}, año: ${currentWeekDates.year})`,
-          style: 'header',
+          text: [
+            { text: 'Gasto de Alimentos\n', style: 'header' },
+            {
+              text: `Semana del ${currentWeekDates.start} al ${currentWeekDates.end}, mes: ${currentWeekDates.month}, año: ${currentWeekDates.year}`,
+              style: 'subHeader',
+            },
+          ],
           alignment: 'center',
           margin: [0, 0, 0, 10],
         },
+        
         {
           table: {
             headerRows: 1,
@@ -103,7 +134,7 @@ const ExpenseRecordList = () => {
     pdfMake.createPdf(docDefinition).download('gasto_de_alimentos.pdf');
   };
   
-  
+  // Función para exportar a PDF los gastos
   const exportToPDF = () => {
     exportPDF(expenseRecords);
   };
@@ -137,14 +168,18 @@ const ExpenseRecordList = () => {
     }
   };
 
+  // Función para exportar a PDF los resultados filtrados
   const handleExportFilteredToPDF = () => {
     exportPDF(filteredResults); // Utiliza la función exportPDF para exportar los datos filtrados
   };
 
+  // Función para eliminar un registro filtrado
   const handleDeleteFiltered = async (id) => {
     try {
+      // Eliminar el registro filtrado
       await axios.delete(`http://localhost:3001/expense_records/${id}`);
       console.log('ExpenseRecord eliminado correctamente');
+      alert('se elimino')
       const updatedResults = filteredResults.filter(record => record.id !== id);
       setFilteredResults(updatedResults);
     } catch (error) {
@@ -166,19 +201,38 @@ const ExpenseRecordList = () => {
 
   // Función para eliminar un registro
   const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3001/expense_records/${id}`);
-      console.log('ExpenseRecord eliminado correctamente');
-      fetchExpenseRecords(); // Recargar datos después de eliminar
-    } catch (error) {
-      console.error('Error al eliminar ExpenseRecord:', error);
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, borrarlo'
+    });
+  
+    if (result.isConfirmed) {
+      try {
+        await axios.delete(`http://localhost:3001/expense_records/${id}`);
+        console.log('ExpenseRecord eliminado correctamente');
+        Swal.fire(
+          '¡Borrado!',
+          'Tu registro ha sido eliminado.',
+          'success'
+        );
+        fetchExpenseRecords(); // Recargar datos después de eliminar
+      } catch (error) {
+        console.error('Error al eliminar ExpenseRecord:', error);
+      }
     }
   };
 
+  // Función para editar un registro
   const handleEdit = (record) => {
     setEditingRecord(record);
   };
 
+  // Función para actualizar un registro editado
   const handleUpdate = async () => {
     try {
       const url = `http://localhost:3001/expense_records/${editingRecord.id}`;
@@ -191,6 +245,7 @@ const ExpenseRecordList = () => {
     }
   };
 
+  // Función para manejar cambios en la edición de registros
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditingRecord({
@@ -199,6 +254,7 @@ const ExpenseRecordList = () => {
     });
   };
 
+  // Función para obtener las fechas de la semana actual
   const getCurrentWeekDates = () => {
     const today = new Date();
     const currentDay = today.getDay(); // Domingo: 0, Lunes: 1, ..., Sábado: 6
@@ -218,12 +274,15 @@ const ExpenseRecordList = () => {
       year: today.getFullYear(),
     };
   }
-  const weekDates = getCurrentWeekDates();
+  const weekDates = getCurrentWeekDates(); // Obtener las fechas de la semana actual
   const [currentWeekDates, setCurrentWeekDates] = useState(getCurrentWeekDates());
 
+  // Función para actualizar las fechas de la semana actual
   const updateCurrentWeekDates = () => {
       setCurrentWeekDates(getCurrentWeekDates());
   };
+
+  
   
   
 return (
@@ -232,11 +291,11 @@ return (
       <h2 className='expenses-h2'>No hay productos agregados</h2>
   ) : (
       <div>
-  {/* <label htmlFor="searchDate">Buscar por fecha:</label><br />
+  <label htmlFor="searchDate">Buscar por fecha:</label><br />
   <div className="searchContainer">
       <input type="date" id="searchDate" name="searchDate" value={searchDate} onChange={(e) => setSearchDate(e.target.value)} className="expenses-searchInput" /><br />
       <button type="button" onClick={handleSearch} className="expenses-searchButton">Buscar</button>
-  </div>    */}
+  </div>   
   {filteredResults.length > 0 && (
         <div>
           <button onClick={handleExportFilteredToPDF}>Exportar búsqueda a PDF</button>
@@ -261,7 +320,6 @@ return (
                 <th>Cantidad</th>
                 <th>Alimentos Utilizados</th>
                 <th>Cantidad Total</th>
-                <th>Inventario Final</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -278,10 +336,9 @@ return (
                   <td>{record.quantity}</td>
                   <td>{record.foods_used}</td>
                   <td>{record.quantitive_total}</td>
-                  <td>{record.final_inventory}</td>
                   <td>
-                    <button onClick={() => handleDelete(record.id)}><MdOutlineDeleteOutline /></button>
-                    <button onClick={() => handleEdit(record)}><BiEdit/></button>
+                    <button onClick={() => handleDelete(record.id)}>Borrar</button>
+                    <button onClick={() => handleEdit(record)}>Editar</button>
 
                   </td>
                 </tr>
@@ -318,7 +375,7 @@ return (
               <td>{record.foods_used}</td>
               <td>
                 <button onClick={() => handleDeleteFiltered(record.id)}>Eliminar</button>
-                <button onClick={() => handleEdit(record)}><BiEdit /></button>
+                <button onClick={() => handleEdit(record)}>Editar</button>
 
               </td>
             </tr>
@@ -333,49 +390,81 @@ return (
   )}
   
   {editingRecord && (
-      <div>
-      <h2>Editar Registro</h2>
-      <form onSubmit={handleUpdate}>
+      <div className='edit-div-expenses'>
+      <h2 className='edit-h2-expenses'>Editar Registro</h2>
+      <form className='edit-form-expenses' onSubmit={handleUpdate}>
           <input
+            className='edit-input-expenses'
             type="text"
             name="responsible_name"
             value={editingRecord.responsible_name}
             onChange={handleEditChange}
           />
           <input
+            className='edit-input-expenses'
             type="text"
             name="article"
             value={editingRecord.article}
             onChange={handleEditChange}
             />
+            <select
+              className='edit-input-expenses'
+              name="category"
+              value={editingRecord.category}
+              onChange={handleEditChange}
+            >
+              {predefinedCategories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+            <select
+              className='edit-input-expenses'
+              name="unit_of_measurement"
+              value={editingRecord.unit_of_measurement}
+              onChange={handleEditChange}
+            >
+              {predefinedUnits.map((unit, index) => (
+                <option key={index} value={unit}>
+                  {unit}
+                </option>
+              ))}
+            </select>
             <input
-            type="text"
-            name="category"
-            value={editingRecord.category}
-            onChange={handleEditChange}
-            />
-            <input
-            type="text"
-            name="unit_of_measurement"
-            value={editingRecord.unit_of_measurement}
-            onChange={handleEditChange}
-            />
-            <input
+            className='edit-input-expenses'
             type="text"
             name="previous_inventory"
             value={editingRecord.previous_inventory}
             onChange={handleEditChange}
             />
             <input 
+            className='edit-input-expenses'
             type="number" 
             id="entry" 
             name="entry" 
             value={editingRecord.entry} 
             onChange={handleEditChange} 
             />
+            <input 
+            className='edit-input-expenses'
+            type="number" 
+            id="quantity" 
+            name="quantity" 
+            value={editingRecord.quantity} 
+            onChange={handleEditChange} 
+            />
+            <input 
+            className='edit-input-expenses'
+            type="number" 
+            id="foods_used" 
+            name="foods_used" 
+            value={editingRecord.foods_used} 
+            onChange={handleEditChange} 
+            />
             
             
-            <button type="submit">Guardar Cambios</button>
+            <button className='edit-button-expenses' type="submit">Guardar Cambios</button>
         </form>
       </div>
   )}
@@ -389,7 +478,7 @@ return (
           color: black
         }
         th, td {
-          border: 1px solid #ddd;
+          border: 2px solid black;
           padding: 8px;
           text-align: left;
           color: black
@@ -400,10 +489,7 @@ return (
           color: black
 
         }
-        tr:hover {
-          background-color: #f5f5f5;
-          
-        }
+      
         /* Ocultar tabla cuando hay resultados de búsqueda */
         table[style='display: none'] {
           display: table;
@@ -413,7 +499,7 @@ return (
     <div>
     </div>
     <div>
-      <div className="Button-Get-Inventory" onClick={() => Back('/principal')}>Volver </div>
+      <div className="Button-Get-expenses" onClick={() => Back('/principal')}>Volver </div>
     {expenseRecords.length > 0 && (
                 <button onClick={exportToPDF}>Exportar a PDF</button>
             )}
@@ -425,4 +511,3 @@ return (
 };
 
 export default ExpenseRecordList;
-

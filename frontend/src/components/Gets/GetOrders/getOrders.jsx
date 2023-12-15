@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import Swal from 'sweetalert2';
 import './getOrders.css'
 import { useNavigate } from 'react-router-dom'
-// import cinai from '../../../assets/img/cencinai.png'
 
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -16,9 +16,32 @@ const GetOrders = () => {
     const [searchCategory, setSearchCategory] = useState('');
     const [filteredOrders, setFilteredOrders] = useState([]);
 
+    const predefinedCategories = [
+        'Lácteos',
+        'No perecedero',
+        'Vegetales',
+        'Frutas',
+        'Carnes',
+        'Pescado'
+    ];
+
+    // Unidades predefinidas
+    const predefinedUnits = [
+        'Kilogramos',
+        'Gramos',
+        'Litros',
+        'Mililitros',
+        'Latas',
+        'Unidades',
+        'Paquetes',
+        'Rollos',
+        'Galón'
+    ];
+
     const handleSearch = () => {
+        const sanitizedSearch = searchCategory.trim().toLowerCase();
         const filtered = foodOrders.filter((item) =>
-            item.category.toLowerCase().includes(searchCategory.toLowerCase())
+            item.category.toLowerCase().match(new RegExp(sanitizedSearch, 'i'))
         );
         setFilteredOrders(filtered);
     };
@@ -35,9 +58,6 @@ const GetOrders = () => {
             item.unit_of_measurement,
             item.requested_amount,
             item.received_amount,
-            item.week,
-            item.month,
-            item.year,
         ]);
         
         const docDefinition = {
@@ -45,16 +65,18 @@ const GetOrders = () => {
             {
             text: "Dirección Técnica - UNAT",
             text: 'Pedido de Alimentos',
-            text: `Pedido de Alimentos (${currentWeekDates.start} al ${currentWeekDates.end}, mes: ${currentWeekDates.month}, año: ${currentWeekDates.year})`,
             style: 'header',
             alignment: 'center', // Alinea el texto al centro
             margin: [0, 0, 0, 10], // Márgenes del texto
+            },
+            {
+                text: `Pedido de Alimentos (${currentWeekDates.start} al ${currentWeekDates.end}, mes: ${currentWeekDates.month}, año: ${currentWeekDates.year})`,
             },
 
             {
             table: {
                 headerRows: 1,
-                widths: [50, 70, 80, 60, 60, 50, 50, 40],
+                widths: [100, 100, 100, 90, 90, 50],
                 body: [
                 [
                     { text: 'Artículo', style: 'tableHeader' },
@@ -62,9 +84,6 @@ const GetOrders = () => {
                     { text: 'Unidad de medida', style: 'tableHeader' },
                     { text: 'Monto requerido', style: 'tableHeader' },
                     { text: 'Monto Recibido', style: 'tableHeader' },
-                    { text: 'Semana', style: 'tableHeader' },
-                    { text: 'Mes', style: 'tableHeader' },
-                    { text: 'Año', style: 'tableHeader' },
                 ],
                 ...data,
                 ],
@@ -117,6 +136,10 @@ const GetOrders = () => {
             const url = `http://localhost:3001/food_orders/${selectedItem.id}`;
             const response = await axios.put(url, selectedItem);
             console.log('Data updated:', response.data);
+            await Swal.fire({
+                title: "Editado correctamente.",
+                icon: "success"
+            });
             setSelectedItem(null); // Limpiar el elemento seleccionado después de la actualización
             fetchData(); // Refrescar los datos después de la actualización
         } catch (error) {
@@ -134,12 +157,27 @@ const GetOrders = () => {
 
     const handleDelete = async (id) => {
         try {
-            const url = `http://localhost:3001/food_orders/${id}`;
-            await axios.delete(url);
-            console.log('Elemento eliminado correctamente');
-            fetchData(); 
+            const result = await Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¡No podrás revertir esto!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar',
+            });
+    
+            if (result.isConfirmed) {
+                const url = `http://localhost:3001/food_orders/${id}`;
+                await axios.delete(url);
+                console.log('Elemento eliminado correctamente');
+                fetchData();
+                Swal.fire('Eliminado', 'El elemento ha sido eliminado.', 'success');
+            }
         } catch (error) {
             console.error('Error al eliminar el elemento:', error);
+            Swal.fire('Error', 'Hubo un error al eliminar el elemento.', 'error');
         }
     };
 
@@ -168,20 +206,23 @@ const GetOrders = () => {
     const updateCurrentWeekDates = () => {
         setCurrentWeekDates(getCurrentWeekDates());
     };
+
+    
     
 
     return (
         <div className="tableContainer">
 
-        <div>
+        <div className='div-orders2'>
             <input
+                className='search-orders'
                 type="text"
                 placeholder="Buscar por categoría"
                 value={searchCategory}
                 onChange={(e) => setSearchCategory(e.target.value)}
             />
-            <button onClick={handleSearch}>Buscar</button>
-            <button onClick={handleReset}>Reset</button>
+            <button className='button-orders' onClick={handleSearch}>Buscar</button>
+            <button className='button-orders' onClick={handleReset}>Reset</button>
         </div>
         <div>
             <h2>
@@ -196,6 +237,7 @@ const GetOrders = () => {
                         <th>Unidad de medida</th>
                         <th>Cantidad solicitada</th>
                         <th>Cantidad requerida</th>
+                        <th>Fecha</th>
                         <th>Categoria</th>
                         <th>Acciones</th>
                     </tr>
@@ -207,6 +249,7 @@ const GetOrders = () => {
                             <td>{item.unit_of_measurement}</td>
                             <td>{item.requested_amount}</td>
                             <td>{item.received_amount}</td>
+                            <td>{item.date}</td>
                             <td>{item.category}</td>                           
                             <td>
                             <button onClick={() => handleEdit(item)}>
@@ -222,39 +265,55 @@ const GetOrders = () => {
         </table>
 
         {selectedItem && (
-                <div className="edit-form">
-                    <h2>Edit Food Order</h2>
+                <div className="orders-edit-form">
+                    <h2 className="orders-h2-form">Editar Ordenes</h2>
                     <input
+                        className="input-edit-form"
                         type="text"
                         name="article"
                         value={selectedItem.article}
                         onChange={handleChange}
                     />
+                    <select
+                        className="Select-Get-Inventory"
+                        name="unit_of_measurement"
+                        value={selectedItem.unit_of_measurement}
+                        onChange={handleChange}
+                    >
+                        {predefinedUnits.map((unit, index) => (
+                            <option key={index} value={unit}>
+                                {unit}
+                            </option>
+                        ))}
+                    </select>
+    
+                    <select
+                        className="Select-Get-Inventory"
+                        name="category"
+                        value={selectedItem.category}
+                        onChange={handleChange}
+                    >
+                        {predefinedCategories.map((category, index) => (
+                            <option key={index} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>
                     <input
-                            type="text"
-                            name="unit_of_measurement"
-                            value={selectedItem.unit_of_measurement}
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="number"
-                            name="requested_amount"
-                            value={selectedItem.requested_amount}
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="number"
-                            name="received_amount"
-                            value={selectedItem.received_amount}
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="text"
-                            name="category"
-                            value={selectedItem.category}
-                            onChange={handleChange}
-                        />
-                    <button onClick={handleUpdate}>Update</button>
+                        className="input-edit-form"
+                        type="number"
+                        name="requested_amount"
+                        value={selectedItem.requested_amount}
+                        onChange={handleChange}
+                    />
+                    <input
+                        className="input-edit-form"
+                        type="number"
+                        name="received_amount"
+                        value={selectedItem.received_amount}
+                        onChange={handleChange}
+                    />
+                    <button className='button-edit-orders' onClick={handleUpdate}>Editar</button>
                 </div>
             )}
             <div className="back-to-principal" onClick={() => goToOrders('/principal')}>

@@ -1,9 +1,13 @@
 import { useRef } from "react";
 import axios from "axios"; 
-// import NavBar from '../components/NavBar/NavBar'
 import uva from '../assets/img/uva.png'
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
+/**
+ * The Signup function is responsible for making a POST request to the server to sign up a user and set
+ * the current user in the application.
+ */
 const Signup = ({ setCurrUser, setShow }) => {
     const formRef = useRef();
     const navigate = useNavigate()
@@ -19,71 +23,88 @@ const Signup = ({ setCurrUser, setShow }) => {
         });
         const data = response.data;
         if (!response.status === 200) throw data.error;
-        navigate ("/login")   
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Cuenta creada correctamente",
+            showConfirmButton: false,
+            timer: 1500
+        });
         localStorage.setItem("token", response.headers.authorization);
         setCurrUser(data);
+        window.location.reload();
+
         } catch (error) {
         console.log("error", error);
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(formRef.current);
         const data = Object.fromEntries(formData);
         const userInfo = {
-        user: { email: data.email, password: data.password, name: data.name, last_name: data.last_name },
+        user: {
+            email: data.email,
+            password: data.password,
+            password_confirmation: data.password, 
+            name: data.name, 
+            last_name: data.last_name,
+        },
         };
-        signup(userInfo, setCurrUser);
-        e.target.reset();
+    
+        try {
+        await signup(userInfo, setCurrUser);
+        formRef.current.reset();
+        } catch (error) {
+        console.error('Error during signup:', error);
+        }
     };
+
 
     const handleClick = (e) => {
         e.preventDefault();
         setShow(true);
     };
 
-return (
+return  (
     <div className="signup-container">
-    <div className="signup-logo">
-        <img className='signup-uvaLogo2' src={uva} alt='uva logo' />
-        <p className='signup-eslogan2'>UVA App, organiza y administra<br />tu empresa de la mejor manera.</p>
-    </div>
-    <div className="signup-form">
-    <form className="signup-form" ref={formRef} onSubmit={handleSubmit}>
-                <p className="signup-title">Registrate </p>
-                <p className="signup-message">Registrate para tener acceso a UVA. </p>
-                <div class="signup-flex">
-                        <label>
-                            <input type="text" name='firstName'  className="signup-input"/>
-                            <span>Nombre</span>
-                        </label>
-                        <br />
-                        <label>
-                            <input  className="signup-input" type="text" name='lastName'  />                  
-                            <span>Apellido</span>
-                        </label>
+        <div className="signup-logo">
+            <img className='signup-uvaLogo' src={uva} alt='uva logo' />
+            <div className='signup-eslogan'><p className='PSlogan'>UVA App, organiza y administra<br />tu empresa de la mejor manera.</p></div>
+        </div>
+        <div className="signup-form">
+            <form className="signup-card" ref={formRef} onSubmit={handleSubmit}>
+                <h2 id="heading">Regístrate</h2>
+                <p>Regístrate para tener acceso a UVA.</p>
+                <div className="signup-flex">
+                <div class="container">
+                
                 </div>
-                        <label>
-                            <input className="signup-input" type="email" name='email' autoComplete="off" />
-                            <span>Correo</span>
-                        </label>
-                        <label>
-                            <input className="signup-input" type="password" name='password'  />
-                            <span>Contraseña</span>
-                        </label>
-                        <label>
-                            <input className="signup-input" type="password" placeholder="" required=""/>
-                            <span>Confirmar contraseña</span>
-                        </label>
-                        <label>
-                            <input className="signup-submit" type='submit' value="Registrar" />
-                        </label>
-                <div>Ya tienes una cuenta? <a href="/" onClick={handleClick} >inicia sesión</a>.</div>
+                    <label className="signup-field">
+                        <input className="signup-input-field" type="text" name="name" placeholder="Nombre" />
+                    </label>
+                    <label className="signup-field">
+                        <input className="signup-input-field" type="text" name="last_name" placeholder="Apellido" />
+                    </label>
+                    <label className="signup-field">
+                        <input className="signup-input-field" type="email" name="email" autoComplete="off" placeholder="Correo" />
+                    </label>
+                    <label className="signup-field">
+                        <input className="signup-input-field" type="password" name="password" placeholder="Contraseña" />
+                    </label>
+                    <label className="signup-field">
+                        <input className="signup-input-field" type="password" name="password_confirmation" placeholder="Confirmar Contraseña" />
+                    </label>
+                    <div className="signup-btn">
+                        <input className="signup-button2" type='submit' value="Registrar" />
+                    </div>
+                </div>
+                <div>¿Ya tienes una cuenta? <a href="/" onClick={handleClick}>Inicia sesión</a>.</div>
             </form>
+        </div>
     </div>
-    </div>
-    );
+);
 };
 
 export default Signup;

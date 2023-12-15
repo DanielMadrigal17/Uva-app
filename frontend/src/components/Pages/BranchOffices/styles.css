@@ -1,34 +1,83 @@
 
-.map {
-  width: 530px;
+  
+
+
+h1, h2, h3, h4, h5, h6 { 
+  color: #25292a; 
+  margin: 0px 0px 10px 0px; font-family: 'Overpass', sans-serif; 
+  font-weight: 700; 
+  letter-spacing: -1px; 
+  line-height: 1; }
+  
+  
+  h1 { font-size: 34px; }
+  h2 { font-size: 28px; line-height: 38px; }
+  h3 { font-size: 22px; line-height: 32px; }
+  h4 { font-size: 20px; }
+  h5 { font-size: 17px; }
+  h6 { font-size: 12px; }
+  p { margin: 0 0 20px; line-height: 1.7; }
+  p:last-child { margin: 0px; }
+  
+  
+  
+  a { text-decoration: none; 
+  color: #8d8f90; 
+  -webkit-transition: all 0.3s; 
+  -moz-transition: all 0.3s; 
+  transition: all 0.3s; }
+  a:focus, a:hover { text-decoration: none; color: #f85759; }
+  
+  
+  
+  .page-header4 { background: url(https://img.freepik.com/vector-premium/mapa-gps-pin-direccion_184220-474.jpg?size=626&ext=jpg)no-repeat; 
+  position: relative;
+  height: 5%;
+  width: 80.5%;
+  margin-left: 19.8%;
+  background-size: cover; }
+  
+  .page-header4:before {
+    backdrop-filter: blur(2px);
+    content: "";
     position:absolute;
-    margin-right: 50%;
-    margin-top: -70%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.297); /* Black with 50% opacity */
+   }
+  
+  
+  
+  
+  .page-caption { 
+  padding-top: 140px; 
+  padding-bottom: 140px; }
+  
+  
+  .page-title { 
+  font-size: 46px; 
+  line-height: 1; 
+  color: #fff; font-weight: 600; 
+  text-align: center; }
+  
+  .card-section { 
+  position: relative; 
+  bottom: 60px; 
+  margin-left: 22%;
+  width: 76%;
   }
   
-  .heading-primary-sub4 {
-      display: flex;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 7.4px;
-      margin-left: -50%
+  
+  .card-block { 
+    padding: 80px;
+    background-color: white;
+   }
+  
+  .section-title { 
+    margin-bottom: 60px; 
   }
-  
-  .loader2 h1{
-    margin-top: 10%;
-      margin-left: -120%;
-    padding: 0;
-    text-transform: uppercase;
-    font-size: 6em;
-    color: rgba(255,255,255,.1);
-    background-image: url(https://wallpapers.com/images/hd/blue-and-purple-3840-x-2160-t20ps2kmo6okyx3g.jpg);
-    background-repeat: repeat-x;
-    -webkit-background-clip: text;
-    animation: animate 15s linear infinite;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
-  
-  }
-  
   
   
   
@@ -36,13 +85,13 @@
   
   .cardMap {
     position: absolute;
-    width: 450px;
-    height: 340px;
+    width: 380px;
+    height: 300px;
     color: #2e2d31;
     background: #131313;
     overflow: hidden;
     border-radius: 20px;
-    margin-left: 50%;
+    margin-left: 46%;
   }
   
   .temporary_text {
@@ -53,6 +102,7 @@
   
   .card_title {
     font-weight: bold;
+    padding-right: 15%;
   
   }
   
@@ -66,7 +116,7 @@
     background: #f2f2f2;
     border-top-left-radius: 20px;
       /* edit here to change the height of the content box */
-    transform: translateY(100px);
+    transform: translateY(150px);
     transition: transform .25s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 5);
   }
@@ -86,18 +136,21 @@
   .card_title {
     color: #131313;
     line-height: 15px;
+    padding-right: 15%;
   }
   
   .card_subtitle {
     display: block;
     font-size: 12px;
     margin-bottom: 3px;
+    padding-right: 15%;
   }
   
   .card_description {
     font-size: 14px;
     opacity: 0;
     transition: opacity .5s;
+    padding-right: 15%;
   }
   
   .cardMap:hover .card_content {
@@ -117,13 +170,15 @@
   
   .cardMap2 {
     position: relative;
-    width: 450px;
-    height: 340px;
+    width: 380px;
+    height: 300px;
     color: #2e2d31;
     background: #131313;
     overflow: hidden;
     border-radius: 20px;
-    margin-left: 10%;
+    margin-left: 0%;
+    margin-top: -6%;
+    margin-bottom: 10%;
   }
   
   .temporary_text2 {
@@ -167,18 +222,21 @@
   .card_title2 {
     color: #131313;
     line-height: 15px;
+    padding-right: 15%;
   }
   
   .card_subtitle2 {
     display: block;
     font-size: 12px;
     margin-bottom: 3px;
+    padding-right: 15%;
   }
   
   .card_description2 {
     font-size: 14px;
     opacity: 0;
     transition: opacity .5s;
+    padding-right: 15%;
   }
   
   .cardMap2:hover .card_content2 {
@@ -198,14 +256,14 @@
   
   .cardMap3 {
     position: relative;
-    width: 450px;
-    height: 340px;
+    width: 380px;
+    height: 300px;
     color: #2e2d31;
     background: #131313;
     overflow: hidden;
     border-radius: 20px;
-    margin-left: 10%;
-    margin-top: 2%;
+    margin-left: 55%;
+    margin-bottom: -5%;
   }
   
   .temporary_text3 {
@@ -229,7 +287,7 @@
     background: #f2f2f2;
     border-top-left-radius: 20px;
       /* edit here to change the height of the content box */
-    transform: translateY(140px);
+    transform: translateY(143px);
     transition: transform .25s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 5);
   }
@@ -249,18 +307,22 @@
   .card_title3 {
     color: #131313;
     line-height: 15px;
+    padding-right: 15%;
+    padding-top: 25%;
   }
   
   .card_subtitle3 {
     display: block;
     font-size: 12px;
     margin-bottom: 3px;
+    padding-right: 15%;
   }
   
   .card_description3 {
     font-size: 14px;
     opacity: 0;
     transition: opacity .5s;
+    padding-right: 10%;
   }
   
   .cardMap3:hover .card_content3 {
@@ -278,13 +340,13 @@
   
   .cardMap4 {
     position: absolute;
-    width: 450px;
-    height: 340px;
+    width: 380px;
+    height: 300px;
     color: #2e2d31;
     background: #131313;
     overflow: hidden;
     border-radius: 20px;
-    margin-left: 50%;
+    margin-left: 0%;
     margin-top: -27%;
   
   }
@@ -297,7 +359,7 @@
   
   .card_title4 {
     font-weight: bold;
-    
+    padding-right: 15%;
   }
   
   .card_content4 {
@@ -313,6 +375,7 @@
     transform: translateY(168px);
     transition: transform .25s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 5);
+    padding-right: 15%;
   }
   
   .card_content4::before {
@@ -336,12 +399,14 @@
     display: block;
     font-size: 12px;
     margin-bottom: 3px;
+    padding-right: 15%;
   }
   
   .card_description4 {
     font-size: 14px;
     opacity: 0;
     transition: opacity .5s;
+    padding-right: 15%;
   }
   
   .cardMap4:hover .card_content4 {

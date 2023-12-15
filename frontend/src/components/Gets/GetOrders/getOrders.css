@@ -20,7 +20,7 @@
     text-align: center;
 }
 
-.edit-form {
+.orders-edit-form {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -53,3 +53,84 @@ button {
     margin-right: 80%;
 }
 
+/* Agrega estilos a los elementos del formulario */
+.orders-edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f941;
+    margin-bottom: 20px;
+}
+
+.orders-h2-form {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input-edit-form {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-edit-form:focus {
+    outline: none;
+    border-color: #6f42c1;
+}
+
+.button-edit-orders {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #6f42c1;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-edit-orders:hover {
+    background-color: #553399;
+}
+
+
+.div-orders2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-orders {
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .button-orders {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #874caf7a; /* Color de fondo */
+    color: white; /* Color del texto */
+    margin-right: 10px;
+  }
+  
+  .button-orders:hover {
+    background-color: #8f97c5; /* Cambia el color al pasar el ratón */
+  }
+  
+  .button-orders:active {
+    background-color: #2172a891; /* Cambia el color cuando se presiona */
+  }
+  

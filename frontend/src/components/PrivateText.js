@@ -1,10 +1,11 @@
+//frontend/src/components/PrivateText.js
 import { useState,useEffect } from "react"
 const PrivateText=({currUser})=>{
     const [message, setMessage]=useState(null)
     const getText=async ()=>{
         try {
             const response=await fetch("http://localhost:3001/private/test", {
-                method: "GET",
+                method: "get",
                 headers: {
                     "content-type": "application/json",
                     "authorization": localStorage.getItem("token")
@@ -27,4 +28,4 @@ const PrivateText=({currUser})=>{
         <div>{message}</div>
     )
 }
-export default PrivateText
+export default PrivateText;

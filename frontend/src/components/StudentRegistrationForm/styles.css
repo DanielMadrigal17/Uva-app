@@ -1,159 +1,160 @@
 
-.form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 3px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f96b;
-  }
-  
-  .form-container h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .form-container form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .form-container form input[type="datetime-local"],
-  .form-container form input[type="date"],
-  .form-container form input[type="text"],
-  .form-container form input[type="checkbox"] {
-    width: calc(100% - 12px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: #333;
-  }
-  
-  .form-container form input[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .form-container form input[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-.Hola{
-  display: flex;
-  justify-content: center;
+.form-container2 {
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  background-color: #f9f9f96b;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
 }
 
-.form-container form input[type="time"] {
-  font-size: 20px;
-  color: #9c4343;
-  background-color: #f5f5f5;
+.form-container2 h1 {
   text-align: center;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin: 5px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-container2 form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-container2 form input[type="datetime-local"],
+.form-container2 form input[type="date"],
+.form-container2 form input[type="text"],
+.form-container2 form input[type="checkbox"] {
+  width: calc(100% - 12px);
   padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
 }
 
-.form-container form input[type="time"]:focus {
-  outline: none; /* Eliminar el borde de enfoque predeterminado */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombreado al enfocar */
+.form-container2 form input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.form-container form input[type="time"]:disabled {
-  background-color: #eee; /* Cambiar el color de fondo */
-  color: #999; /* Cambiar el color del texto */
-  cursor: not-allowed; /* Cambiar el cursor al pasar por encima */
+.form-container2 form input[type="submit"]:hover {
+  background-color: #0056b3;
 }
 
-.form-container form input[type="time"].error {
-  border-color: #ff0000; /* Cambiar el color del borde */
-  background-color: #ffeeee; /* Cambiar el color de fondo */
+.Hola{
+display: flex;
+justify-content: center;
 }
 
-.form-container form input[type="checkbox"] {
-  appearance: none; /* Oculta el estilo predeterminado del checkbox */
-  width: 20px; /* Ancho del checkbox */
-  height: 20px; /* Altura del checkbox */
-  border: 2px solid #333; /* Borde del checkbox */
-  border-radius: 4px; /* Borde redondeado */
-  cursor: pointer; /* Mostrar cursor al pasar sobre el checkbox */
-  outline: none; /* Eliminar el borde de foco */
+.form-container2 form input[type="time"] {
+font-size: 20px;
+color: #9c4343;
+background-color: #f5f5f5;
+text-align: center;
+border-radius: 5px;
+border: 1px solid #ccc;
+margin: 5px;
+padding: 8px;
+}
+
+.form-container2 form input[type="time"]:focus {
+outline: none; /* Eliminar el borde de enfoque predeterminado */
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombreado al enfocar */
+}
+
+.form-container2 form input[type="time"]:disabled {
+background-color: #eee; /* Cambiar el color de fondo */
+color: #999; /* Cambiar el color del texto */
+cursor: not-allowed; /* Cambiar el cursor al pasar por encima */
+}
+
+.form-container2 form input[type="time"].error {
+border-color: #ff0000; /* Cambiar el color del borde */
+background-color: #ffeeee; /* Cambiar el color de fondo */
+}
+
+.form-container2 form input[type="checkbox"] {
+appearance: none; /* Oculta el estilo predeterminado del checkbox */
+width: 20px; /* Ancho del checkbox */
+height: 20px; /* Altura del checkbox */
+border: 2px solid #333; /* Borde del checkbox */
+border-radius: 4px; /* Borde redondeado */
+cursor: pointer; /* Mostrar cursor al pasar sobre el checkbox */
+outline: none; /* Eliminar el borde de foco */
 }
 
 /* Estilo para cuando el checkbox está marcado */
-.form-container form input[type="checkbox"]:checked {
-  background-color: #8c2c6c; /* Cambiar color de fondo cuando está marcado */
+.form-container2 form input[type="checkbox"]:checked {
+background-color: #8c2c6c; /* Cambiar color de fondo cuando está marcado */
 }
 
 /* Cambiar el color de la marca de verificación (tick) */
-.form-container form input[type="checkbox"]::before {
-  content: '\2714'; /* Código unicode para la marca de verificación */
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  line-height: 3px; /* Ajusta verticalmente la marca de verificación */
-  color: transparent; /* Oculta la marca de verificación predeterminada */
+.form-container2 form input[type="checkbox"]::before {
+content: '\2714'; /* Código unicode para la marca de verificación */
+display: block;
+width: 100%;
+height: 100%;
+text-align: center;
+line-height: 3px; /* Ajusta verticalmente la marca de verificación */
+color: transparent; /* Oculta la marca de verificación predeterminada */
 }
 
 /* Estilo para la marca de verificación cuando está marcado */
-.form-container form input[type="checkbox"]:checked::before {
-  color: #fff; /* Cambiar color de la marca de verificación cuando está marcado */
+.form-container2 form input[type="checkbox"]:checked::before {
+color: #fff; /* Cambiar color de la marca de verificación cuando está marcado */
 }
 
 
 
 
 /* Cambiar el tamaño del campo */
-.form-container form input[type="date"] {
-  width: 200px;
-  text-align: center;
+.form-container2 form input[type="date"] {
+width: 200px;
+text-align: center;
 }
 
 /* Cambiar el color del texto */
-.form-container form input[type="date"] {
-  color: rgb(0, 0, 0);
+.form-container2 form input[type="date"] {
+color: rgb(0, 0, 0);
 }
 
 /* Cambiar el color de fondo */
-.form-container form input[type="date"] {
-  background-color: lightgray;
+.form-container2 form input[type="date"] {
+background-color: lightgray;
 }
 
 /* Ajustar el borde */
-.form-container form input[type="date"] {
-  border: 1px solid #ccc;
+.form-container2 form input[type="date"] {
+border: 1px solid #ccc;
 }
 
 /* Redondear las esquinas */
-.form-container form input[type="date"] {
-  border-radius: 5px;
+.form-container2 form input[type="date"] {
+border-radius: 5px;
 }
 
 /* Ajustar el relleno interno */
-.form-container form input[type="date"] {
-  padding: 8px;
+.form-container2 form input[type="date"] {
+padding: 8px;
 }
 
 /* Cambiar el color del texto cuando está enfocado */
-.form-container form input[type="date"]:focus {
-  outline: none;
-  border-color: #8c2c6c;
-  box-shadow: 0 0 5px #8c2c6c;
+.form-container2 form input[type="date"]:focus {
+outline: none;
+border-color: #8c2c6c;
+box-shadow: 0 0 5px #8c2c6c;
 }
 
 /* Deshabilitar el campo */
-.form-container form input[type="date"]:disabled {
-  background-color: lightgray;
-  color: #555;
+.form-container2 form input[type="date"]:disabled {
+background-color: lightgray;
+color: #555;
 }
 

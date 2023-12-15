@@ -1,12 +1,92 @@
 
-.manos {
-  width: 630px;
-  position:absolute;
-  margin-right: 15%;
-  margin-top: -55%;
-  height: 400px;
-  transform: rotate(-6deg);
+
+h1, h2, h3, h4, h5, h6 { 
+  color: #25292a; 
+  margin: 0px 0px 10px 0px; font-family: 'Overpass', sans-serif; 
+  font-weight: 700; 
+  letter-spacing: -1px; 
+  line-height: 1; }
+  
+  
+  h1 { font-size: 34px; }
+  h2 { font-size: 28px; line-height: 38px; }
+  h3 { font-size: 22px; line-height: 32px; }
+  h4 { font-size: 20px; }
+  h5 { font-size: 17px; }
+  h6 { font-size: 12px; }
+  p { margin: 0 0 20px; line-height: 1.7; }
+  p:last-child { margin: 0px; }
+  
+  
+  
+  a { text-decoration: none; 
+  color: #8d8f90; 
+  -webkit-transition: all 0.3s; 
+  -moz-transition: all 0.3s; 
+  transition: all 0.3s; }
+  a:focus, a:hover { text-decoration: none; color: #f85759; }
+  
+  
+  
+  .page-header5 { background: url(https://www.coldelvalle.edu.mx/wp-content/uploads/2021/10/2.-Ki%CC%81nder-o-preescolar-1-scaled.jpg)no-repeat; 
+  position: relative;
+  
+  background-position-y: 80%;
+  height: 5%;
+  width: 80.5%;
+  margin-left: 19.8%;
+  background-size: cover; }
+  
+  .page-header5:before {
+    backdrop-filter: blur(2px);
+    content: "";
+    position:absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.297); /* Black with 50% opacity */
+   }
+  
+  
+  
+  
+  .page-caption { 
+  padding-top: 140px; 
+  padding-bottom: 140px; }
+  
+  
+  .page-title5 { 
+  position: absolute;
+  font-size: 46px; 
+  line-height: 1; 
+  color: #fff; 
+  font-weight: 600; 
+  text-align: center;
+  margin-left: 30%;
 }
+  
+  .card-section { 
+  position: relative; 
+  bottom: 60px; 
+  margin-left: 22%;
+  width: 76%;
+  }
+  
+  
+  .card-block { 
+    padding: 80px;
+    background-color: white;
+   }
+  
+  .section-title { 
+    margin-bottom: 60px; 
+  }
+  
+
+
+
+
 
 .Vamos {
   border: 2px solid beige;

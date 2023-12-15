@@ -112,8 +112,9 @@ body {
 
 /* Formulario de edición */
 .edit-form {
+    background-color: #30d0d02d;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 2px solid #ffffff;
     border-radius: 5px;
     margin-top: 20px;
 }
@@ -128,8 +129,6 @@ body {
     border-radius: 4px;
     font-size: 14px;
 }
-
-
 
 .Button-Get-Inventory {
     padding: 12px 24px;

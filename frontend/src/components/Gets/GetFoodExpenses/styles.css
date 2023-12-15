@@ -1,4 +1,4 @@
-/* .searchContainer {
+.searchContainer {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -54,4 +54,66 @@
     font-family: Arial;
     text-transform: uppercase;
 }
- */
+
+
+
+.edit-div-expenses {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f74b;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-h2-expenses {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.edit-form-expenses {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-input-expenses {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.edit-input-expenses:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+.edit-button-expenses {
+    padding: 10px 20px;
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-button-expenses:hover {
+    background-color: #357dbf;
+}
+
+.Button-Get-expenses{
+    padding: 10px 20px;
+    background-color: #b74ae281;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 50px;
+    margin-left: 46.5%;
+}

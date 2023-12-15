@@ -8,9 +8,6 @@ RSpec.describe FoodOrder, type: :model do
       unit_of_measurement: 'Unit',
       requested_amount: 10,
       received_amount: 5,
-      week: 1,
-      month: 10,
-      year: 2023,
       category: 'Category'
     )
     expect(food_order).to be_valid

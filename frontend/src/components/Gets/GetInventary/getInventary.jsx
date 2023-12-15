@@ -128,6 +128,10 @@ const GetInventary = () => {
             const url = `http://localhost:3001/inventories/${selectedItem.id}`;
             const response = await axios.patch(url, selectedItem);
             console.log('Inventory item updated:', response.data);
+            await Swal.fire({
+                title: "Editado correctamente.",
+                icon: "success"
+            });   
             setSelectedItem(null); // Limpiar el item seleccionado después de la actualización
             fetchInventory(); // Actualizar la lista de inventario después de la actualización
         } catch (error) {
@@ -192,15 +196,19 @@ const GetInventary = () => {
     return (
         <div className="Div-Get-Inventory">
         <h1 className="H1-Get-Inventory">Inventario</h1>
-        <input
-            className="Search-Get-Inventory"
-            type="text"
-            placeholder="Busca el producto o categoría..."
-            value={searchTerm}
-            onChange={handleSearch}
-        />
-        <table className="Get-inventory-table">
-            <thead>
+        {inventory.length === 0 ? (
+            <p >No hay productos agregados.</p>
+        ) : (
+            <React.Fragment>
+            <input
+                className="Search-Get-Inventory"
+                type="text"
+                placeholder="Busca el producto o categoría..."
+                value={searchTerm}
+                onChange={handleSearch}
+            />
+            <table className="Get-inventory-table">
+                <thead>
                 <tr>
                     <th>Artítulo</th>
                     <th>Unidad</th>
@@ -209,85 +217,90 @@ const GetInventary = () => {
                     <th>Fecha</th>
                     <th>Acciones</th>
                 </tr>
-            </thead>
-            <tbody>
-                {searchInventory().map(item => (
-                    <tr className="Get-inventory-item" key={item.id}>
-                        <td>{item.item}</td>
-                        <td>{item.unit_of_measure}</td>
-                        <td>{item.category}</td>
-                        <td>{item.quantity}</td>
-                        <td>{item.date}</td>
-                        <td>
-                            <button className="Button-Get-Inventory" onClick={() => handleEdit(item)}>
-                                Edit
-                            </button>
-                            <button className="Button-Get-Inventory" onClick={() => handleDelete(item.id)}>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-        {selectedItem && (
-            <div className="edit-form">
-                <h2>Edit Inventory Item</h2>
-                <input
-                    className="Input-Get-Inventory"
-                    type="text"
-                    name="item"
-                    value={selectedItem.item}
-                    onChange={handleChange}
-                />
-
-                <select
-                    className="Select-Get-Inventory"
-                    name="unit_of_measure"
-                    value={selectedItem.unit_of_measure}
-                    onChange={handleChange}
-                >
-                    {predefinedUnits.map((unit, index) => (
-                        <option key={index} value={unit}>
-                            {unit}
-                        </option>
+                </thead>
+                <tbody>
+                    {searchInventory().map(item => (
+                        <tr className="Get-inventory-item" key={item.id}>
+                            <td>{item.item}</td>
+                            <td>{item.unit_of_measure}</td>
+                            <td>{item.category}</td>
+                            <td>{item.quantity}</td>
+                            <td>{item.date}</td>
+                            <td>
+                                <button className="Button-Get-Inventory" onClick={() => handleEdit(item)}>
+                                    Editar
+                                </button>
+                                <button className="Button-Get-Inventory" onClick={() => handleDelete(item.id)}>
+                                    Borrar
+                                </button>
+                            </td>
+                        </tr>
                     ))}
-                </select>
-
-                <select
-                    className="Select-Get-Inventory"
-                    name="category"
-                    value={selectedItem.category}
-                    onChange={handleChange}
-                >
-                    {predefinedCategories.map((category, index) => (
-                        <option key={index} value={category}>
-                            {category}
-                        </option>
-                    ))}
-                </select>
-
-                <input
-                    className="Input-Get-Inventory"
-                    type="number"
-                    name="quantity"
-                    value={selectedItem.quantity}
-                    onChange={handleChange}
-                />
-
-                <button className="Button-Get-Inventory"  onClick={() => handleUpdate()}>
-                    Update
-                </button>
-            </div>
+                </tbody>
+            </table>
+            <div className="Button-Get-Inventory " onClick={() => exportPDF()}>
+                    Exportar a PDF
+                </div>
+            </React.Fragment>
+            
         )}
-        <div className='separator'>
-            <div className="Button-Get-Inventory" onClick={() => exportPDF()}>
-                Exportar a PDF
+    {selectedItem && (
+                <div className="edit-form">
+                    <h2>Editar inventario</h2>
+                    <input
+                        className="Input-Get-Inventory"
+                        type="text"
+                        name="item"
+                        value={selectedItem.item}
+                        onChange={handleChange}
+                    />
+    
+                    <select
+                        className="Select-Get-Inventory"
+                        name="unit_of_measure"
+                        value={selectedItem.unit_of_measure}
+                        onChange={handleChange}
+                    >
+                        {predefinedUnits.map((unit, index) => (
+                            <option key={index} value={unit}>
+                                {unit}
+                            </option>
+                        ))}
+                    </select>
+    
+                    <select
+                        className="Select-Get-Inventory"
+                        name="category"
+                        value={selectedItem.category}
+                        onChange={handleChange}
+                    >
+                        {predefinedCategories.map((category, index) => (
+                            <option key={index} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>
+    
+                    <input
+                        className="Input-Get-Inventory"
+                        type="number"
+                        name="quantity"
+                        value={selectedItem.quantity}
+                        onChange={handleChange}
+                    />
+    
+                    <button className="Button-Get-Inventory"  onClick={() => handleUpdate()}>
+                        Editar
+                    </button>
+                </div>
+            )}    
+            <div className='separator'>
+                <div className="Button-Get-Inventory" onClick={() => goToInventory('/inventorie')}>Volver </div>
             </div>
-            <div className="Button-Get-Inventory" onClick={() => goToInventory('/inventorie')}>Volver </div>
-        </div>
-    </div>
+            
+            </div>
     );
+    
 };
 
 export default GetInventary;

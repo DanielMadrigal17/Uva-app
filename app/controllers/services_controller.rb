@@ -11,7 +11,7 @@ class ServicesController < ApplicationController
     if @service.save
       render json: @service, status: :created
     else
-      render json: @service.errors, status: :unprocessable_entity
+      render json: @service.errors, status: :unprocessable_entity # Cambio aquí
     end
   end
 
@@ -22,6 +22,7 @@ class ServicesController < ApplicationController
       render json: @service.errors, status: :unprocessable_entity
     end
   end
+  
 
   def destroy
     @service.destroy
